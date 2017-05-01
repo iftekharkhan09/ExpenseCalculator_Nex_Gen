@@ -29,7 +29,6 @@
 			<artifactId>poi</artifactId>
 			<version>3.7</version>
 		</dependency>
-		<sun></sun>
 		<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
 		<dependency>
 			<groupId>org.jfree</groupId>
