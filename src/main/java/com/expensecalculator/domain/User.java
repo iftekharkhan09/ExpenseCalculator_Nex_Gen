@@ -1,4 +1,4 @@
-package com.expensecalculator.models;
+package com.expensecalculator.domain;
 
 import java.util.Date;
 

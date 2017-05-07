@@ -1,4 +1,4 @@
-package com.expensecalculator.models;
+package com.expensecalculator.domain;
 
 public class Gender {
 	private int gender_id;

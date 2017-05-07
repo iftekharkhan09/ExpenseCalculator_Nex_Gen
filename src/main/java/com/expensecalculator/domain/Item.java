@@ -1,4 +1,4 @@
-package com.expensecalculator.models;
+package com.expensecalculator.domain;
 
 public class Item {
 	Integer item_id;
