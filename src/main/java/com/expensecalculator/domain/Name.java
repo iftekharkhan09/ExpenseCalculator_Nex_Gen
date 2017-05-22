@@ -1,11 +1,24 @@
 package com.expensecalculator.domain;
 
-public class Name {
-	private int name_id;
-	private String first_name;
-	private String last_name;
-	private int title_id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="name")
+public class Name {
+	@Column
+	private int name_id;
+	@Column
+	private String first_name;
+	@Column
+	private String last_name;
+	@OneToOne
+	@JoinColumn(name="id")
+	private Title title;
+	
 	public int getName_id() {
 		return name_id;
 	}
@@ -30,12 +43,12 @@ public class Name {
 		this.last_name = last_name;
 	}
 
-	public int getTitle_id() {
-		return title_id;
+	public Title getTitle() {
+		return title;
 	}
 
-	public void setTitle_id(int title_id) {
-		this.title_id = title_id;
+	public void setTitle(Title title) {
+		this.title = title;
 	}
 
 }

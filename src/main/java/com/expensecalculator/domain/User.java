@@ -2,16 +2,37 @@ package com.expensecalculator.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="user")
 public class User {
+	@OneToOne
+	@JoinColumn(name="Organization_id")
 	private Organization organization;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int user_id;
+	@Column(name="username")
 	private String username;
-	private int gender_id;
+	@Column(name="email")
 	private String email;
+	@Column(name="start_date")
 	private Date start_date;
+	@Column(name="leaving_date")
 	private Date leaving_date;
-	private int name_id;
-
+	@OneToOne
+	@JoinColumn(name="name_id")
+	private Name name;
+	@OneToOne
+	@JoinColumn(name="gender_id")
+	private Gender gender;
 	public String getUsername() {
 		return username;
 	}
@@ -26,14 +47,6 @@ public class User {
 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
-	}
-
-	public int getGender_id() {
-		return gender_id;
-	}
-
-	public void setGender_id(int gender_id) {
-		this.gender_id = gender_id;
 	}
 
 	public String getEmail() {
@@ -60,11 +73,11 @@ public class User {
 		this.leaving_date = leaving_date;
 	}
 
-	public int getName_id() {
-		return name_id;
+	public Name getName() {
+		return name;
 	}
 
-	public void setName_id(int name_id) {
-		this.name_id = name_id;
+	public void setName(Name name) {
+		this.name = name;
 	}
 }
