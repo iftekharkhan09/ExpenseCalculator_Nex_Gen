@@ -2,23 +2,27 @@ package com.expensecalculator.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="name")
+@Table(name = "name")
 public class Name {
-	@Column
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int name_id;
 	@Column
 	private String first_name;
 	@Column
 	private String last_name;
 	@OneToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name = "id")
 	private Title title;
-	
+
 	public int getName_id() {
 		return name_id;
 	}
