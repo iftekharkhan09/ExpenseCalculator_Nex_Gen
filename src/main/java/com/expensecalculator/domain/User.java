@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="USER")
 public class User {
 	@OneToOne
-	@JoinColumn(name="Organization_id")
+	@JoinColumn(name="organization_id")
 	private Organization organization;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

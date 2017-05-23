@@ -1,19 +1,46 @@
 package com.expensecalculator.domain;
 import java.sql.Date;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="STAFF")
 public class Staff {
+	@OneToOne
+	@JoinColumn(name="organization_id")
 	private Organization organizations;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int staff_id;
+	@Column
 	private String ipaddress;
+	@Column
 	private String username;
+	@Column
 	private String password;
+	@Column
 	private Date start_date;
+	@Column
 	private Date leaving_date;
+	@Column
 	private char blocked;
+	@Column
 	private int unsuccessfull_login_attempts;
+	@Column
 	private int name_id;
+	@Column
 	private char is_admin;
+	@Column
 	private String email;
+	@OneToOne
+	@JoinColumn(name="gender_id")
+	private Gender gender;
 	public int getStaff_id() {
 		return staff_id;
 	}

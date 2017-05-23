@@ -1,20 +1,18 @@
 package com.expensecalculator.domain;
 
 public class Category {
-	Integer Category_id;
-	String category_description;
-	public String getCategory_description() {
-		return category_description;
+	private Integer id;
+	private String description;
+	public Integer getId() {
+		return id;
 	}
-	public void setCategory_description(String category_description) {
-		this.category_description = category_description;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public Integer getCategory_id() {
-		return Category_id;
+	public String getDescription() {
+		return description;
 	}
-	public void setCategory_id(Integer category_id) {
-		Category_id = category_id;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	
-
 }
