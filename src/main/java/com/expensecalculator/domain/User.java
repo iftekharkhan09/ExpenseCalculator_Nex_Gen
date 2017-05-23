@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="user")
+@Table(name="USER")
 public class User {
 	@OneToOne
 	@JoinColumn(name="Organization_id")

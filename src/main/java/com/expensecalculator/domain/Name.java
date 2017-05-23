@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "name")
+@Table(name = "NAME")
 public class Name {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Name {
 	@Column
 	private String last_name;
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "title_id")
 	private Title title;
 
 	public int getName_id() {
