@@ -12,17 +12,10 @@ import javax.persistence.Table;
 public class Organization {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int organizationId;
+	private int id;
 	@Column
 	private String OrganizationName;
 
-	public int getOrganizationId() {
-		return organizationId;
-	}
-
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
-	}
 
 	public String getOrganizationName() {
 		return OrganizationName;
@@ -30,5 +23,13 @@ public class Organization {
 
 	public void setOrganizationName(String organizationName) {
 		OrganizationName = organizationName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

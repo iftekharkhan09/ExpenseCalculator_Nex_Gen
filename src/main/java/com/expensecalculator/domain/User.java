@@ -18,7 +18,7 @@ public class User {
 	private Organization organization;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int user_id;
+	private int id;
 	@Column(name="username")
 	private String username;
 	@Column(name="email")
@@ -39,14 +39,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
 	}
 
 	public String getEmail() {
@@ -79,5 +71,13 @@ public class User {
 
 	public void setName(Name name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

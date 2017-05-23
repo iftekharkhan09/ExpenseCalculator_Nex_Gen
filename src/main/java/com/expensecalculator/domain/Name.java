@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Name {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int name_id;
+	private int id;
 	@Column
 	private String first_name;
 	@Column
@@ -22,14 +22,6 @@ public class Name {
 	@OneToOne
 	@JoinColumn(name = "title_id")
 	private Title title;
-
-	public int getName_id() {
-		return name_id;
-	}
-
-	public void setName_id(int name_id) {
-		this.name_id = name_id;
-	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -53,6 +45,14 @@ public class Name {
 
 	public void setTitle(Title title) {
 		this.title = title;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

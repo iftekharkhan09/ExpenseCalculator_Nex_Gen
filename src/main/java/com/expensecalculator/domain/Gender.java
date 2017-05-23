@@ -12,20 +12,21 @@ import javax.persistence.Table;
 public class Gender {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int gender_id;
+	private int id;
 	@Column
 	private String gender;
-	public int getGender_id() {
-		return gender_id;
-	}
-	public void setGender_id(int gender_id) {
-		this.gender_id = gender_id;
-	}
+	
 	public String getGender() {
 		return gender;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
