@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PRICE")
 @NamedQueries({@NamedQuery(name="Price.findAll",query="select p from Price p"),
-			   @NamedQuery(name="Price.findById",query="select p fromm Price p where p.id=:priceId")
+			   @NamedQuery(name="Price.findUnique",query="select p fromm Price p where p.id=:priceId")
 })
 public class Price {
 	private Integer id;
