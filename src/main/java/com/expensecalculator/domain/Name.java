@@ -14,10 +14,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "NAME")
 @NamedQueries({
-	@NamedQuery(name="Name.findAll",query="select n from name n"),
-	@NamedQuery(name="Name.findByFirstName",query="select n from name n where n.firstName=:first_name"),
-	@NamedQuery(name="Name.findByLastName",query="select n from name n where n.lastname=:last_name"),
-	@NamedQuery(name="Name.findByName",query="select n from name where n.firstName=first_name" +"AND n.lastName=:last_name")
+	@NamedQuery(name="Name.findAll",query="select n from Name n"),
+	@NamedQuery(name="Name.findByFirstName",query="select n from Name n where n.firstName=:first_name"),
+	@NamedQuery(name="Name.findByLastName",query="select n from Name n where n.lastName=:last_name"),
+	@NamedQuery(name="Name.findByName",query="select n from Name n where n.firstName=:first_name" +" AND n.lastName=:last_name")
 })
 public class Name {
 	@Id
