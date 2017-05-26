@@ -1,17 +1,27 @@
 package com.expensecalculator.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+@Entity
+@Table(name="PRICE")
+@NamedQueries({@NamedQuery(name="Price.findAll",query="select p from Price p"),
+			   @NamedQuery(name="Price.findById",query="select p fromm Price p where p.id=:priceId")
+})
 public class Price {
-	Integer Price_id;
-	public Integer getPrice_id() {
-		return Price_id;
-	}
-	public void setPrice_id(Integer price_id) {
-		Price_id = price_id;
-	}
+	private Integer id;
 	public String getDescription() {
 		return Description;
 	}
 	public void setDescription(String description) {
 		Description = description;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	String Description;
 }
