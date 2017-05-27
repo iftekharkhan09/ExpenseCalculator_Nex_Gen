@@ -1,18 +1,29 @@
 package com.expensecalculator.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="REASON")
+@NamedQueries({
+	@NamedQuery(name="Reason.findAll",query="select r from Reason r"),
+	@NamedQuery(name="Reason.findUnique",query="select r.description from Reason r where r.id=:reasonId")
+})
 public class Reason {
-int reason_id;
-String reason_description;
-public String getReason_description() {
-	return reason_description;
-}
-public void setReason_description(String reason_description) {
-	this.reason_description = reason_description;
-}
-public int getReason_id() {
-	return reason_id;
-}
-public void setReason_id(int reason_id) {
-	this.reason_id = reason_id;
-}
+	private int id;
+	private String description;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.print.attribute.standard.MediaSize.NA;
-
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({ @NamedQuery(name = "Organization.findAll", query = "select o from Organization o"),

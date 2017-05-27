@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.print.attribute.standard.MediaSize.NA;
-
 @Entity
 @Table(name = "GENDER")
 @NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "select g from Gender g"),
@@ -25,17 +23,13 @@ public class Gender {
 	public String getGender() {
 		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 }
