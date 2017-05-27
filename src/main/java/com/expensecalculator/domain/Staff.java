@@ -1,69 +1,51 @@
 package com.expensecalculator.domain;
-import java.sql.Date;
 
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="STAFF")
+@Table(name = "STAFF")
+@NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username") })
 public class Staff {
 	@OneToOne
-	@JoinColumn(name="organization_id")
+	@JoinColumn(name = "organization_id")
 	private Organization organizations;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int staff_id;
-	@Column
-	private String ipaddress;
-	@Column
-	private String username;
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name = "ip_address")
+	private String ipAddress;
+	@Column(name = "username")
+	private String userName;
+	@Column(name = "password")
 	private String password;
+	@Column(name = "start_date")
+	private Date startDate;
+	@Column(name = "leaving_date")
+	private Date leavingDate;
 	@Column
-	private Date start_date;
-	@Column
-	private Date leaving_date;
-	@Column
-	private char blocked;
-	@Column
-	private int unsuccessfull_login_attempts;
-	@Column
-	private int name_id;
-	@Column
-	private char is_admin;
+	private char isBlocked;
+	@Column(name = "unsuccessful_login_attempts")
+	private int unsuccessfullLoginAttempts;
+	@Column(name = "name_id")
+	private int nameId;
+	@Column(name = "is_admin")
+	private char isAdmin;
 	@Column
 	private String email;
 	@OneToOne
-	@JoinColumn(name="gender_id")
+	@JoinColumn(name = "gender_id")
 	private Gender gender;
-	public int getStaff_id() {
-		return staff_id;
-	}
-
-	public void setStaff_id(int staff_id) {
-		this.staff_id = staff_id;
-	}
-
-	public String getIpaddress() {
-		return ipaddress;
-	}
-
-	public void setIpaddress(String ipaddress) {
-		this.ipaddress = ipaddress;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	private Date lastLogin;
 
 	public String getPassword() {
 		return password;
@@ -73,59 +55,91 @@ public class Staff {
 		this.password = password;
 	}
 
-	public Date getStart_date() {
-		return start_date;
-	}
-
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
-	}
-
-	public Date getLeaving_date() {
-		return leaving_date;
-	}
-
-	public void setLeaving_date(Date leaving_date) {
-		this.leaving_date = leaving_date;
-	}
-
-	public char getBlocked() {
-		return blocked;
-	}
-
-	public void setBlocked(char blocked) {
-		this.blocked = blocked;
-	}
-
-	public int getUnsuccessfull_login_attempts() {
-		return unsuccessfull_login_attempts;
-	}
-
-	public void setUnsuccessfull_login_attempts(int unsuccessfull_login_attempts) {
-		this.unsuccessfull_login_attempts = unsuccessfull_login_attempts;
-	}
-
-	public int getName_id() {
-		return name_id;
-	}
-
-	public void setName_id(int name_id) {
-		this.name_id = name_id;
-	}
-
-	public char getIs_admin() {
-		return is_admin;
-	}
-
-	public void setIs_admin(char is_admin) {
-		this.is_admin = is_admin;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getLeavingDate() {
+		return leavingDate;
+	}
+
+	public void setLeavingDate(Date leavingDate) {
+		this.leavingDate = leavingDate;
+	}
+
+	public int getUnsuccessfullLoginAttempts() {
+		return unsuccessfullLoginAttempts;
+	}
+
+	public void setUnsuccessfullLoginAttempts(int unsuccessfullLoginAttempts) {
+		this.unsuccessfullLoginAttempts = unsuccessfullLoginAttempts;
+	}
+
+	public int getNameId() {
+		return nameId;
+	}
+
+	public void setNameId(int nameId) {
+		this.nameId = nameId;
+	}
+
+	public char getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(char isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public char getIsBlocked() {
+		return isBlocked;
+	}
+
+	public void setIsBlocked(char isBlocked) {
+		this.isBlocked = isBlocked;
 	}
 }
