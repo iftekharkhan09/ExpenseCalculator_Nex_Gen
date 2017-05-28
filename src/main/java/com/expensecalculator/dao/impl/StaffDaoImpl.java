@@ -7,8 +7,8 @@ import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.domain.Staff;
 
 public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
-	public Staff getStaffDetails(String userName) {
-		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
+	public Staff findUnique(String userName) {
+		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserName", domainClass);
 		query.setParameter("username", userName);
 		Staff staff = null;
 		try {

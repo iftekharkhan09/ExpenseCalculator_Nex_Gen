@@ -1,28 +1,30 @@
 package com.expensecalculator.dao.impl;
 
 import java.util.List;
-import java.lang.reflect.*;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
-
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-
 import com.expensecalculator.dao.GenericDao;
-import com.expensecalculator.domain.Category;
-import com.expensecalculator.domain.User;
+import com.expensecalculator.domain.Staff;
 
 public class GenericDaoImpl<T> implements GenericDao<T>  {
-	@PersistenceContext
-	protected EntityManager em;
-
+	private static final String PERSISTENCE_UNIT_NAME = "expenseCalculator";
+	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
+	private static EntityManagerFactory factory;
+	protected static EntityManager em;
+	
 	protected Class<T> domainClass;
 	/** The domain object name. */
 	protected String domainObjectName = null;
 
 	@SuppressWarnings("unchecked")
 	public GenericDaoImpl() {
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em=factory.createEntityManager();
 		domainClass = (Class<T>) ((ParameterizedType) getClass()
 		.getGenericSuperclass()).getActualTypeArguments()[0];
 		Entity entityAnn = (Entity) domainClass.getAnnotation(Entity.class);
@@ -71,6 +73,10 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 	public int deleteAll() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public Staff findUnique(String string) {
+		return null;
 	}
 
 }
