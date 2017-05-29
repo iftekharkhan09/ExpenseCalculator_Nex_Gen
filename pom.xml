@@ -17,6 +17,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.4</version>
+	</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -79,6 +85,12 @@
     		<artifactId>javax.servlet-api</artifactId>
    		 	<version>3.1.0</version>
    			 <scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		</dependencies>
 	<build>
