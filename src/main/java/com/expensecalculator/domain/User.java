@@ -1,17 +1,22 @@
 package com.expensecalculator.domain;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="USER")
+@NamedQueries({
+		@NamedQuery(name="User.findAll",query="select u from User u"),
+		@NamedQuery(name="User.findUnique",query="select u from User u where u.id=:userID")
+})
 public class User {
 	@OneToOne
 	@JoinColumn(name="organization_id")
@@ -24,9 +29,9 @@ public class User {
 	@Column(name="email")
 	private String email;
 	@Column(name="start_date")
-	private Date start_date;
+	private Date startDate;
 	@Column(name="leaving_date")
-	private Date leaving_date;
+	private Date leavingDate;
 	@OneToOne
 	@JoinColumn(name="name_id")
 	private Name name;
@@ -36,7 +41,6 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -47,22 +51,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Date getStart_date() {
-		return start_date;
-	}
-
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
-	}
-
-	public Date getLeaving_date() {
-		return leaving_date;
-	}
-
-	public void setLeaving_date(Date leaving_date) {
-		this.leaving_date = leaving_date;
 	}
 
 	public Name getName() {
@@ -79,5 +67,21 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getLeavingDate() {
+		return leavingDate;
+	}
+
+	public void setLeavingDate(Date leavingDate) {
+		this.leavingDate = leavingDate;
 	}
 }
