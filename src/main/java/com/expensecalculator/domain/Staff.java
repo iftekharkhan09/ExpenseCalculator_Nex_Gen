@@ -14,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "STAFF")
-@NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username") })
+@NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
+				@NamedQuery(name="Staff.findByUsernameAndPass",query="select s from Staff s where s.userName:=username and s.password=:password")
+				})
 public class Staff {
 	@OneToOne
 	@JoinColumn(name = "organization_id")

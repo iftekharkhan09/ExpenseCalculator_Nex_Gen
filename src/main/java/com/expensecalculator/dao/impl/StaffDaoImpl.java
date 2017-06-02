@@ -18,4 +18,18 @@ public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 		}
 		return staff;
 	}
+
+	@Override
+	public Staff authenticateStaff(String userName, String password) {
+		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserNameAndPass", domainClass);
+		query.setParameter("username", userName);
+		query.setParameter("password", password);
+		Staff staff = null;
+		try {
+			staff = query.getSingleResult();
+		} catch (NoResultException e) {
+			staff = null;
+		}
+		return staff;
+	}
 }

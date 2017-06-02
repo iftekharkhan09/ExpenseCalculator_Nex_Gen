@@ -4,6 +4,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class LoginBean {
+	public LoginBean() {
+	}
+
 	@NotNull
 	private String emailId;
 	@NotNull
