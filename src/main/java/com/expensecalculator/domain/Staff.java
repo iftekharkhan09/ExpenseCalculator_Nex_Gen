@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Staff {
 	@OneToOne
 	@JoinColumn(name = "organization_id")
-	private Organization organizations;
+	private Organization organization;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,8 +38,8 @@ public class Staff {
 	private char isBlocked;
 	@Column(name = "unsuccessful_login_attempts")
 	private int unsuccessfullLoginAttempts;
-	@Column(name = "name_id")
-	private int nameId;
+	@JoinColumn(name="name_id")
+	private Name name;
 	@Column(name = "is_admin")
 	private char isAdmin;
 	@Column
@@ -121,14 +121,6 @@ public class Staff {
 		this.unsuccessfullLoginAttempts = unsuccessfullLoginAttempts;
 	}
 
-	public int getNameId() {
-		return nameId;
-	}
-
-	public void setNameId(int nameId) {
-		this.nameId = nameId;
-	}
-
 	public char getIsAdmin() {
 		return isAdmin;
 	}
@@ -143,5 +135,29 @@ public class Staff {
 
 	public void setIsBlocked(char isBlocked) {
 		this.isBlocked = isBlocked;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+	public Name getName() {
+		return name;
+	}
+
+	public void setName(Name name) {
+		this.name = name;
 	}
 }

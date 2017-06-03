@@ -11,7 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({ @NamedQuery(name = "Organization.findAll", query = "select o from Organization o"),
-				@NamedQuery(name="Organization.findUnique",query="select o from Organization o where o.id=:OrganizationId")
+				@NamedQuery(name="Organization.findUnique",query="select o from Organization o where o.id=:organizationId"),
+				@NamedQuery(name="Organization.findByName",query="select o from Organization o where o.OrganizationName=:organizationName")
 })
 public class Organization {
 	@Id

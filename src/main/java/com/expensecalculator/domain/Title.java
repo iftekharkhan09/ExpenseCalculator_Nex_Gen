@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @Table(name = "TITLE")
 @NamedQueries({
 	@NamedQuery(name="Title.findAll",query="select t from Title t"),
-	@NamedQuery(name="Title.findUnique",query="select t from Title t where t.id=:titleId"),
-	@NamedQuery(name="Title.findById",query="select t from Title t where t.id=:id")
+	@NamedQuery(name="Title.findUnique",query="select t from Title t where t.id=:id"),
+	@NamedQuery(name="Title.findByTitle",query="select t from Title t where t.title=:title")
 })
 public class Title {
 	@Id

@@ -29,7 +29,6 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 		domainClass = (Class<T>) ((ParameterizedType) getClass()
 		.getGenericSuperclass()).getActualTypeArguments()[0];
 		Entity entityAnn = (Entity) domainClass.getAnnotation(Entity.class);
-
 		if (entityAnn != null && !entityAnn.name().equals("")) {
 			domainObjectName = entityAnn.name();
 		} else {

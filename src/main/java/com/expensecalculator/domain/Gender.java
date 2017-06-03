@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "GENDER")
 @NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "select g from Gender g"),
-				@NamedQuery(name = "Gender.findUnique", query = "select g from Gender g where g.gender=:genderData"),
-				@NamedQuery(name = "Gender.findById", query = "select g from Gender g where g.id=:id")
+				@NamedQuery(name = "Gender.findUnique", query = "select g from Gender g where g.id=:id"),
+				@NamedQuery(name = "Gender.findByGender", query = "select g from Gender g where g.gender=:gender")
 })
 public class Gender {
 	public Gender() {

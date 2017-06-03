@@ -15,9 +15,10 @@ import javax.persistence.Table;
 @Table(name = "NAME")
 @NamedQueries({
 	@NamedQuery(name="Name.findAll",query="select n from Name n"),
-	@NamedQuery(name="Name.findByFirstName",query="select n from Name n where n.firstName=:first_name"),
-	@NamedQuery(name="Name.findByLastName",query="select n from Name n where n.lastName=:last_name"),
-	@NamedQuery(name="Name.findByName",query="select n from Name n where n.firstName=:first_name" +" AND n.lastName=:last_name")
+	@NamedQuery(name="Name.findByFirstName",query="select n from Name n where n.firstName=:firstName"),
+	@NamedQuery(name="Name.findByLastName",query="select n from Name n where n.lastName=:lastName"),
+	@NamedQuery(name="Name.findByName",query="select n from Name n where n.firstName=:firstName" +" AND n.lastName=:lastName"),
+	@NamedQuery(name="Name.findUnique",query="select n from Name n where n.id=:id")
 })
 public class Name {
 	public Name(String firstName, String lastName, Title title) {

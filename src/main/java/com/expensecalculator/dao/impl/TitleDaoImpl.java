@@ -8,9 +8,9 @@ import com.expensecalculator.domain.Title;
 
 public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
 	@Override
-	public Title findUnique(String genderData) {
+	public Title findUnique(int id) {
 		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
-		query.setParameter("genderData", genderData);
+		query.setParameter("id", id);
 		Title title = null;
 		try {
 			title = query.getSingleResult();
@@ -33,16 +33,16 @@ public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
 	}
 
 	@Override
-	public Title findById(int id) {
-		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findById", domainClass);
-		query.setParameter("id", id);
-		Title title = null;
+	public Title findByTitle(String title) {
+		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findByTitle", domainClass);
+		query.setParameter("title", title);
+		Title titleDetail = null;
 		try {
-			title = query.getSingleResult();
+			titleDetail = query.getSingleResult();
 		} catch (NoResultException e) {
-			title = null;
+			titleDetail = null;
 		}
-		return title;
+		return titleDetail;
 	}
 
 }
