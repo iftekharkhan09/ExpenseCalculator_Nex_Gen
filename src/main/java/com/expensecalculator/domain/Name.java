@@ -20,6 +20,12 @@ import javax.persistence.Table;
 	@NamedQuery(name="Name.findByName",query="select n from Name n where n.firstName=:first_name" +" AND n.lastName=:last_name")
 })
 public class Name {
+	public Name(String firstName, String lastName, Title title) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.title = title;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
