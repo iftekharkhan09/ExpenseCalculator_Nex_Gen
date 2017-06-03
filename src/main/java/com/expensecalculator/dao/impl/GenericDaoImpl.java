@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import com.expensecalculator.dao.GenericDao;
+import com.expensecalculator.domain.Gender;
 import com.expensecalculator.domain.Staff;
 
 public class GenericDaoImpl<T> implements GenericDao<T>  {
@@ -73,10 +74,6 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 	public int deleteAll() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	public Staff findUnique(String string) {
-		return null;
 	}
 
 }

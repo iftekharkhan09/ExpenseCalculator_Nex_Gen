@@ -4,6 +4,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.expensecalculator.dao.StaffDao;
+import com.expensecalculator.domain.Name;
 import com.expensecalculator.domain.Staff;
 
 public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
@@ -31,5 +32,10 @@ public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 			staff = null;
 		}
 		return staff;
+	}
+
+	public boolean addStaff(Staff staff) {
+		create(staff);
+		return true;
 	}
 }

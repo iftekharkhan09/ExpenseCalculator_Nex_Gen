@@ -7,11 +7,10 @@ import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.domain.Gender;
 
 public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
-
 	@Override
-	public Gender findUnique(int id) {
+	public Gender findUnique(String genderData) {
 		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
-		query.setParameter("genderId", id);
+		query.setParameter("genderData", genderData);
 		Gender gender = null;
 		try {
 			gender = query.getSingleResult();
@@ -31,5 +30,18 @@ public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 			genderList = null;
 		}
 		return genderList;
+	}
+
+	@Override
+	public Gender findById(int id) {
+		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findById", domainClass);
+		query.setParameter("id", id);
+		Gender gender = null;
+		try {
+			gender = query.getSingleResult();
+		} catch (NoResultException e) {
+			gender = null;
+		}
+		return gender;
 	}
 }
