@@ -38,6 +38,8 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="gender_id")
 	private Gender gender;
+	@Column(name="mobile_no")
+	private String mobileNo;
 	public String getUsername() {
 		return username;
 	}
@@ -83,5 +85,11 @@ public class User {
 
 	public void setLeavingDate(Date leavingDate) {
 		this.leavingDate = leavingDate;
+	}
+	public String getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 }

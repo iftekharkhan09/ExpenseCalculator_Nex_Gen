@@ -49,6 +49,8 @@ public class Staff {
 	@JoinColumn(name = "gender_id")
 	private Gender gender;
 	private Date lastLogin;
+	@Column(name="mobile_no")
+	private String mobileNo;
 
 	public String getPassword() {
 		return password;
@@ -160,5 +162,13 @@ public class Staff {
 
 	public void setName(Name name) {
 		this.name = name;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 }
