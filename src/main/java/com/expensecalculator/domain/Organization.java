@@ -8,13 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({ @NamedQuery(name = "Organization.findAll", query = "select o from Organization o"),
-				@NamedQuery(name="Organization.findUnique",query="select o from Organization o where o.id=:organizationId"),
-				@NamedQuery(name="Organization.findByName",query="select o from Organization o where o.OrganizationName=:organizationName")
-})
+		@NamedQuery(name = "Organization.findUnique", query = "select o from Organization o where o.id=:organizationId"),
+		@NamedQuery(name = "Organization.findByName", query = "select o from Organization o where o.OrganizationName=:organizationName") })
 public class Organization {
+	public Organization() {
+		super();
+	}
+
+	public Organization(String organizationName) {
+		this.OrganizationName = organizationName;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -35,5 +43,23 @@ public class Organization {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public int hashCode() {
+		return OrganizationName.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+		Organization organization = (Organization) obj;
+		return (OrganizationName == organization.OrganizationName
+				|| (OrganizationName != null && OrganizationName.equals(organization.getOrganizationName())));
 	}
 }

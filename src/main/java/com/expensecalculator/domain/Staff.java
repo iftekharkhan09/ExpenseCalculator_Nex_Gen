@@ -1,6 +1,6 @@
 package com.expensecalculator.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +34,9 @@ public class Staff {
 	private Date startDate;
 	@Column(name = "leaving_date")
 	private Date leavingDate;
-	@Column
+	@Column(name="is_blocked",columnDefinition="char(1) default 'N'")
 	private char isBlocked;
-	@Column(name = "unsuccessful_login_attempts")
+	@Column(name = "unsuccessful_login_attempts",columnDefinition="integer default '0'")
 	private int unsuccessfullLoginAttempts;
 	@OneToOne
 	@JoinColumn(name="name_id")

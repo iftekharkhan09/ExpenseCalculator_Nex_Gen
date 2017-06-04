@@ -34,12 +34,6 @@ public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 	}
 
 	@Override
-	public boolean createName(Name name) {
-		create(name);
-		return true;
-	}
-
-	@Override
 	public Name findByName(String firstName, String lastName) {
 		TypedQuery<Name> query = em.createNamedQuery(domainObjectName + ".findByName", domainClass);
 		query.setParameter("firstName", firstName);

@@ -13,17 +13,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "NAME")
-@NamedQueries({
-	@NamedQuery(name="Name.findAll",query="select n from Name n"),
-	@NamedQuery(name="Name.findByFirstName",query="select n from Name n where n.firstName=:firstName"),
-	@NamedQuery(name="Name.findByLastName",query="select n from Name n where n.lastName=:lastName"),
-	@NamedQuery(name="Name.findByName",query="select n from Name n where n.firstName=:firstName" +" AND n.lastName=:lastName"),
-	@NamedQuery(name="Name.findUnique",query="select n from Name n where n.id=:id")
-})
+@NamedQueries({ @NamedQuery(name = "Name.findAll", query = "select n from Name n"),
+		@NamedQuery(name = "Name.findByFirstName", query = "select n from Name n where n.firstName=:firstName"),
+		@NamedQuery(name = "Name.findByLastName", query = "select n from Name n where n.lastName=:lastName"),
+		@NamedQuery(name = "Name.findByName", query = "select n from Name n where n.firstName=:firstName"
+				+ " AND n.lastName=:lastName"),
+		@NamedQuery(name = "Name.findUnique", query = "select n from Name n where n.id=:id") })
 public class Name {
 	public Name() {
 		super();
 	}
+
 	public Name(String firstName, String lastName, Title title) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -33,14 +33,14 @@ public class Name {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 	@OneToOne
 	@JoinColumn(name = "title_id")
 	private Title title;
-	
+
 	public Title getTitle() {
 		return title;
 	}
@@ -73,4 +73,25 @@ public class Name {
 		this.lastName = lastName;
 	}
 
+	@Override
+	public int hashCode() {
+		int primeNumber = 17;
+		int titleId = title.getId();
+		return (primeNumber * firstName.hashCode() + lastName.hashCode()) + titleId;
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+		Name name = (Name) obj;
+		return (firstName == name.firstName || (firstName != null && firstName.equals(name.getFirstName())))
+				&& (lastName == name.lastName || (lastName != null && lastName.equals(name.getLastName())))
+				&& (this.title.getId() == name.title.getId());
+	}
 }

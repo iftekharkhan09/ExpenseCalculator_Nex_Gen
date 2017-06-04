@@ -6,6 +6,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.expensecalculator.dao.OrganizationDao;
+import com.expensecalculator.domain.Name;
 import com.expensecalculator.domain.Organization;
 
 public class OrganizationDaoImpl extends GenericDaoImpl<Organization> implements OrganizationDao {
@@ -46,6 +47,5 @@ public class OrganizationDaoImpl extends GenericDaoImpl<Organization> implements
 		}
 		return organization;
 	}
-	
 	
 }
