@@ -14,15 +14,15 @@
 		action="showProfile">
 		<table>
 			<tr>
-				<td><form:label path="userName" cssErrorClass="error"><spring:message code="login.userName"/> : </form:label>
+				<td><form:label path="userName" cssErrorClass="error"><spring:message code="userName"/> : </form:label>
 					<form:input path="userName" cssErrorClass="error" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="OrganizationName" cssErrorClass="error"><spring:message code="login.OrganizationName"/> : </form:label>
+				<td><form:label path="OrganizationName" cssErrorClass="error"><spring:message code="organizationName"/> : </form:label>
 					<form:input path="OrganizationName" cssErrorClass="error" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="password" cssErrorClass="error"><spring:message code="login.password"/> : </form:label>
+				<td><form:label path="password" cssErrorClass="error"><spring:message code="password"/> : </form:label>
 					<form:input path="password" cssErrorClass="error" /></td>
 			</tr>
 			<tr>
