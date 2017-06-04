@@ -21,6 +21,9 @@ import javax.persistence.Table;
 	@NamedQuery(name="Name.findUnique",query="select n from Name n where n.id=:id")
 })
 public class Name {
+	public Name() {
+		super();
+	}
 	public Name(String firstName, String lastName, Title title) {
 		this.firstName = firstName;
 		this.lastName = lastName;

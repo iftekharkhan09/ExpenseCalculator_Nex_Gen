@@ -1,9 +1,8 @@
 package com.expensecalculator.service.impl;
 
-import java.util.Date;
-
 import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.GenericDaoImpl;
+import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
 import com.expensecalculator.dao.impl.StaffDaoImpl;
 import com.expensecalculator.dao.impl.TitleDaoImpl;
@@ -20,19 +19,19 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
 		Staff staff = new StaffDaoImpl().findUnique(loginBean.getUserName());
-		if (staff != null)
+		if (staff != null && staff.getUserName().equals(loginBean.getUserName()) && staff.getPassword().equals(loginBean.getPassword()))
 			return staff;
 		return null;
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
-		String firstName = "Sunny";
+		String firstName = "Beta";
 		String lastName = "Babu";
-		Title title = new TitleDaoImpl().findById(1);
-		Gender gender = new GenderDaoImpl().findById(1);
+		Title title = new TitleDaoImpl().findUnique(1);
+		//Gender gender = new GenderDaoImpl().findUnique(1);
 		Name name = new Name(firstName, lastName, title);
-		Staff staff = new Staff();
+		new NameDaoImpl().create(name);
+	/*	Staff staff = new Staff();
 		//staff.setEmail(staffRegistrationBean.getEmail());
 		staff.setEmail("iakhan@gamil.com");
 		staff.setIpAddress("1.2.3.4");
@@ -50,8 +49,9 @@ public class StaffServiceImpl implements StaffService {
 		staff.setGender(gender);
 		//Organization organization = new OrganizationDaoImpl().findUnique(staffRegistrationBean.getOrganization());
 		Organization organization = new OrganizationDaoImpl().findByName("ACCENTURE");
+		System.out.println(organization.getId());
 		staff.setOrganization(organization);
-		new StaffDaoImpl().create(staff);
+		new StaffDaoImpl().create(staff);*/
 		//System.out.println(staff1.getIpAddress());
 		return true;
 	}

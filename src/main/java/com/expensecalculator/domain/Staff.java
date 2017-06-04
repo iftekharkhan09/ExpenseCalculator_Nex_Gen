@@ -38,6 +38,7 @@ public class Staff {
 	private char isBlocked;
 	@Column(name = "unsuccessful_login_attempts")
 	private int unsuccessfullLoginAttempts;
+	@OneToOne
 	@JoinColumn(name="name_id")
 	private Name name;
 	@Column(name = "is_admin")

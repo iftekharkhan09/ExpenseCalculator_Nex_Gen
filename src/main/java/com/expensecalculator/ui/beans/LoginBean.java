@@ -1,17 +1,17 @@
 package com.expensecalculator.ui.beans;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class LoginBean {
-	public LoginBean(String userName, int orgId, String password) {
-		this.userName = userName;
-		OrgId = orgId;
-		this.password = password;
-	}
-
-	public LoginBean() {
-	}
-
+	@NotNull
+	@Size(min=6,max=30,message="Size should be between 6 and 30")
 	private String userName;
-	private int OrgId;
+	@NotNull
+	@Size(min=6,max=30,message="Size should be between 6 and 30")
+	private String OrganizationName;
+	@NotNull
+	@Size(min=6,max=30,message="Size should be between 6 and 30")
 	private String password;
 
 	public String getPassword() {
@@ -30,11 +30,13 @@ public class LoginBean {
 		this.userName = userName;
 	}
 
-	public int getOrgId() {
-		return OrgId;
+	public String getOrganizationName() {
+		return OrganizationName;
 	}
 
-	public void setOrgId(int orgId) {
-		OrgId = orgId;
+	public void setOrganizationName(String organizationName) {
+		OrganizationName = organizationName;
 	}
+
+	
 }
