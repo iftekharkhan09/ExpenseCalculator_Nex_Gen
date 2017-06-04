@@ -2,112 +2,46 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <html>
-
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <title>Registration</title>
-
 </head>
-
 <body>
-
-	<form:form id="regForm" modelAttribute="user" action="registerProcess"
+	<form:form id="regForm" modelAttribute="staffRegistrationBean" action="registerStaff"
 		method="post">
-
 		<table align="center">
-
 			<tr>
-
-				<td><form:label path="username">Username</form:label></td>
-
-				<td><form:input path="username" name="username" id="username" />
-
+				<td>user name : <form:input path="userName" name="username"
+						id="username" />
 				</td>
-
 			</tr>
-
 			<tr>
-
-				<td><form:label path="password">Password</form:label></td>
-
-				<td><form:password path="password" name="password"
+				<td>Organization : <form:input path="organization" name="username"
+						id="organization" />
+				</td>
+			</tr>
+			<tr>
+				<td>Password : <form:input path="password" name="password"
 						id="password" /></td>
-
 			</tr>
-
 			<tr>
-
-				<td><form:label path="firstname">FirstName</form:label></td>
-
-				<td><form:input path="firstname" name="firstname"
+				<td>First Name :<form:input path="firstName" name="firstname"
 						id="firstname" /></td>
-
 			</tr>
-
 			<tr>
-
-				<td><form:label path="lastname">LastName</form:label></td>
-
-				<td><form:input path="lastname" name="lastname" id="lastname" />
-
+				<td>Last Name :<form:input path="lastName" name="lastname"
+						id="lastname" />
 				</td>
-
 			</tr>
-
 			<tr>
-
-				<td><form:label path="email">Email</form:label></td>
-
-				<td><form:input path="email" name="email" id="email" /></td>
-
+				<td>Email :<form:input path="email" name="email" id="email" /></td>
 			</tr>
-
 			<tr>
-
-				<td><form:label path="address">Address</form:label></td>
-
-				<td><form:input path="address" name="address" id="address" />
-
-				</td>
-
-			</tr>
-
-			<tr>
-
-				<td><form:label path="phone">Phone</form:label></td>
-
-				<td><form:input path="phone" name="phone" id="phone" /></td>
-
-			</tr>
-
-			<tr>
-
 				<td></td>
-
-				<td><form:button id="register" name="register">Register</form:button>
-
-				</td>
-
+				<td><input type="submit" value="register"></td>
 			</tr>
-
-			<tr></tr>
-
-			<tr>
-
-				<td></td>
-
-				<td><a href="home.jsp">Home</a></td>
-
-			</tr>
-
 		</table>
-
 	</form:form>
-
 </body>
-
 </html>

@@ -8,10 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.expensecalculator.controller.LoginController;
 
 public class LoginControllerTest {
-	@Test
+	/*@Test
 	public void homePageTest() throws Exception {
 		LoginController controller = new LoginController();
 		MockMvc mockMvc = standaloneSetup(controller).build();
 		mockMvc.perform(get("/")).andExpect(view().name("login"));
-	}
+	}*/
 }
