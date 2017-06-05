@@ -10,8 +10,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import com.expensecalculator.dao.GenericDao;
-import com.expensecalculator.domain.Gender;
-import com.expensecalculator.domain.Staff;
 
 public class GenericDaoImpl<T> implements GenericDao<T>  {
 	private static final String PERSISTENCE_UNIT_NAME = "expenseCalculator";
@@ -56,7 +54,8 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 	}
 
 	public T update(T t) {
-		// TODO Auto-generated method stub
+		etr = em.getTransaction();
+		etr.begin();
 		return null;
 	}
 
@@ -79,5 +78,4 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

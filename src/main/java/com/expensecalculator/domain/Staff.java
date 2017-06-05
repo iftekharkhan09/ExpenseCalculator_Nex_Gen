@@ -31,7 +31,7 @@ public class Staff {
 	@Column(name = "password")
 	private String password;
 	@Column(name = "start_date")
-	private Date startDate;
+	private Date startDate=new Date();
 	@Column(name = "leaving_date")
 	private Date leavingDate;
 	@Column(name="is_blocked",columnDefinition="char(1) default 'N'")
@@ -41,13 +41,14 @@ public class Staff {
 	@OneToOne
 	@JoinColumn(name="name_id")
 	private Name name;
-	@Column(name = "is_admin")
+	@Column(name = "is_admin",columnDefinition="char(1) default 'N'")
 	private char isAdmin;
 	@Column
 	private String email;
 	@OneToOne
 	@JoinColumn(name = "gender_id")
 	private Gender gender;
+	@Column(name="last_login")
 	private Date lastLogin;
 	@Column(name="mobile_no")
 	private String mobileNo;
