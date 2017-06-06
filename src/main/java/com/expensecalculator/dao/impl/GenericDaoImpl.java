@@ -11,13 +11,13 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import com.expensecalculator.dao.GenericDao;
 
-public class GenericDaoImpl<T> implements GenericDao<T>  {
+public class GenericDaoImpl<T> implements GenericDao<T> {
 	private static final String PERSISTENCE_UNIT_NAME = "expenseCalculator";
 	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
 	private static EntityManagerFactory factory;
 	protected static EntityManager em;
 	protected EntityTransaction etr;
-	
+
 	protected Class<T> domainClass;
 	/** The domain object name. */
 	protected String domainObjectName = null;
@@ -25,9 +25,8 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 	@SuppressWarnings("unchecked")
 	public GenericDaoImpl() {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		em=factory.createEntityManager();
-		domainClass = (Class<T>) ((ParameterizedType) getClass()
-		.getGenericSuperclass()).getActualTypeArguments()[0];
+		em = factory.createEntityManager();
+		domainClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		Entity entityAnn = (Entity) domainClass.getAnnotation(Entity.class);
 		if (entityAnn != null && !entityAnn.name().equals("")) {
 			domainObjectName = entityAnn.name();
@@ -35,7 +34,7 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 			domainObjectName = domainClass.getSimpleName();
 		}
 	}
-	
+
 	public T create(T t) {
 		etr = em.getTransaction();
 		etr.begin();
@@ -45,18 +44,19 @@ public class GenericDaoImpl<T> implements GenericDao<T>  {
 	}
 
 	public void delete(Object id) {
-		this.em.remove(id);
+		em.remove(id);
 	}
 
 	public T find(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(domainClass,id);
 	}
 
 	public T update(T t) {
 		etr = em.getTransaction();
 		etr.begin();
-		return null;
+		em.merge(t);
+		etr.commit();
+		return t;
 	}
 
 	public long countAll(Map<String, Object> params) {

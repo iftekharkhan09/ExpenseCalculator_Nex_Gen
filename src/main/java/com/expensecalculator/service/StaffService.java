@@ -7,5 +7,5 @@ import com.expensecalculator.ui.beans.StaffRegistrationBean;
 public interface StaffService {
 	Staff authenticateStaff(LoginBean loginBean);
 	boolean createStaff(StaffRegistrationBean staffRegistrationBean);
-	void updateUnsuccessfulAttempts(Staff staff);
+	void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff);
 }

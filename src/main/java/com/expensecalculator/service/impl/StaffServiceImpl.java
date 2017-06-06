@@ -26,8 +26,9 @@ public class StaffServiceImpl implements StaffService {
 			staff.setLastLogin(new Date());
 			new StaffDaoImpl().update(staff);
 			return staff;
-		} else {
-			updateUnsuccessfulAttempts(staff);
+		} else if (staff.getIsBlocked() == 'N' && staff != null
+				&& staff.getUserName().equals(loginBean.getUserName())) {
+			updateUnsuccessfulAttemptsAndBlockedStatus(staff);
 		}
 		return null;
 	}
@@ -71,8 +72,11 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public void updateUnsuccessfulAttempts(Staff staff) {
-		staff.setUnsuccessfullLoginAttempts(staff.getUnsuccessfullLoginAttempts() + 1);
+	public void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff) {
+		int unsuccessfullLoginAttempts = staff.getUnsuccessfullLoginAttempts();
+		staff.setUnsuccessfullLoginAttempts(unsuccessfullLoginAttempts + 1);
+		if (unsuccessfullLoginAttempts + 1 > 3) 
+			staff.setIsBlocked('Y');
 		new StaffDaoImpl().update(staff);
 	}
 }
