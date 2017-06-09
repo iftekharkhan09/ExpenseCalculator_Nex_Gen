@@ -43,6 +43,14 @@
 					</form:label> <form:input path="lastName" name="lastname" id="lastname"
 						cssErrorClass="error" /></td>
 			</tr>
+			<%-- <tr>
+				<td><form:label path="gender">
+						<spring:message code="gender" /> : </form:label>
+				<td><form:select path="${gender}">
+						<form:options items="${genderList}" id="id" itemValue="gender">
+						</form:options>
+					</form:select></td>
+			</tr> --%>
 			<tr>
 				<td><form:label path="email" cssErrorClass="error">
 						<spring:message code="email" /> : 

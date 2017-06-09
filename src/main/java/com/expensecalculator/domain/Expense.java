@@ -1,85 +1,47 @@
 package com.expensecalculator.domain;
 
-import java.sql.Date;
+import java.util.Collection;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "EXPENSE")
 public class Expense {
-	int item_id;
-	int reason_id;
-	public int getReason_id() {
-		return reason_id;
-	}
-	public void setReason_id(int reason_id) {
-		this.reason_id = reason_id;
-	}
-	String date_of_purchase;
-	Date Updated_time;
-	String exclude;
-	double quantity_purchased;
-	public double getQuantity_purchased() {
-		return quantity_purchased;
-	}
-	public void setQuantity_purchased(double quantity_purchased) {
-		this.quantity_purchased = quantity_purchased;
-	}
-	int Amount_paid_by;
-	double total_price;
-	int Updated_by;
-	int expense_id;
-	String comments;
-	public int getItem_id() {
-		return item_id;
-	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
-	}
-	public String getDate_of_purchase() {
-		return date_of_purchase;
-	}
-	public void setDate_of_purchase(String date_of_purchase) {
-		this.date_of_purchase = date_of_purchase;
-	}
-	public Date getUpdated_time() {
-		return Updated_time;
-	}
-	public void setUpdated_time(Date updated_time) {
-		Updated_time = updated_time;
-	}
-	public String getExclude() {
-		return exclude;
-	}
-	public void setExclude(String exclude) {
-		this.exclude = exclude;
-	}
-	
-	public int getAmount_paid_by() {
-		return Amount_paid_by;
-	}
-	public void setAmount_paid_by(int amount_paid_by) {
-		Amount_paid_by = amount_paid_by;
-	}
-	public double getTotal_price() {
-		return total_price;
-	}
-	public void setTotal_price(double total_price) {
-		this.total_price = total_price;
-	}
-	public int getUpdated_by() {
-		return Updated_by;
-	}
-	public void setUpdated_by(int updated_by) {
-		Updated_by = updated_by;
-	}
-	public int getExpense_id() {
-		return expense_id;
-	}
-	public void setExpense_id(int expense_id) {
-		this.expense_id = expense_id;
-	}
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@OneToOne
+	@JoinColumn(name = "item_id")
+	private Item item;
+	@OneToOne
+	@JoinColumn(name = "reason_id")
+	private Reason reason;
+	@Temporal(TemporalType.DATE)
+	private java.util.Date dateOfPurchase;
+	@Temporal(TemporalType.DATE)
+	private Date updatedDatetime;
+	// private Collection users;
+	@Column(name = "quantity_purchased")
+	private double qunatityPurchased;
+	@OneToOne
+	@JoinColumn(name = "amount_paid_by")
+	private User amountPaidBy;
+	@Column(name = "total_price")
+	private double totalPrice;
+	@OneToOne
+	@JoinColumn(name = "updated_by")
+	private User updatedBy;
+	@Column(name = "comments")
+	private String comments;
+}

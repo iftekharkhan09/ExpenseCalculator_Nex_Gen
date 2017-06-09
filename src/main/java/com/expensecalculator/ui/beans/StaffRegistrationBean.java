@@ -3,6 +3,8 @@ package com.expensecalculator.ui.beans;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.expensecalculator.domain.Gender;
+
 public class StaffRegistrationBean {
 	@NotNull
 	@Size(min=6,max=30,message="Size should be between 6 and 30")
@@ -23,7 +25,7 @@ public class StaffRegistrationBean {
 	@NotNull
 	@Size(min=10,max=10,message="Invalid Mobile No")
 	private String phoneNo;
-	
+	private Gender gender;
 	public String getUserName() {
 		return userName;
 	}
@@ -78,6 +80,14 @@ public class StaffRegistrationBean {
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 }

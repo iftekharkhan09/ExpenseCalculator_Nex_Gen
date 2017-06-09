@@ -11,12 +11,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "STAFF")
 @NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
-				@NamedQuery(name="Staff.findByUsernameAndPass",query="select s from Staff s where s.userName=:username and s.password=:password")
-				})
+		@NamedQuery(name = "Staff.findByUsernameAndPass", query = "select s from Staff s where s.userName=:username and s.password=:password") })
 public class Staff {
 	@OneToOne
 	@JoinColumn(name = "organization_id")
@@ -31,26 +31,26 @@ public class Staff {
 	@Column(name = "password")
 	private String password;
 	@Column(name = "start_date")
-	private Date startDate=new Date();
+	private Date startDate = new Date();
 	@Column(name = "leaving_date")
 	private Date leavingDate;
-	@Column(name="is_blocked",columnDefinition="char(1) default 'N'")
+	@Column(name = "is_blocked", columnDefinition = "char(1) default 'N'")
 	private char isBlocked;
-	@Column(name = "unsuccessful_login_attempts",columnDefinition="integer default '0'")
+	@Column(name = "unsuccessful_login_attempts", columnDefinition = "integer default '0'")
 	private int unsuccessfullLoginAttempts;
 	@OneToOne
-	@JoinColumn(name="name_id")
+	@JoinColumn(name = "name_id")
 	private Name name;
-	@Column(name = "is_admin",columnDefinition="char(1) default 'N'")
+	@Column(name = "is_admin", columnDefinition = "char(1) default 'N'")
 	private char isAdmin;
 	@Column
 	private String email;
 	@OneToOne
 	@JoinColumn(name = "gender_id")
 	private Gender gender;
-	@Column(name="last_login")
+	@Column(name = "last_login")
 	private Date lastLogin;
-	@Column(name="mobile_no")
+	@Column(name = "mobile_no")
 	private String mobileNo;
 
 	public String getPassword() {

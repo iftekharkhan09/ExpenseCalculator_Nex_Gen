@@ -7,6 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.service.impl.StaffServiceImpl;
 import com.expensecalculator.ui.beans.StaffRegistrationBean;
 
@@ -15,6 +17,7 @@ public class RegistrationController {
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
 	public String registerStaffPage(Model model) {
 		model.addAttribute("staffRegistrationBean", new StaffRegistrationBean());
+		model.addAttribute("genderList", new GenderDaoImpl().findAll());
 		return "register";
 	}
 

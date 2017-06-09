@@ -10,15 +10,18 @@ import com.expensecalculator.domain.Organization;
 public class ObjectComparator {
 	public Name isNameAlreadyDefined(Name name) {
 		List<Name> names = new NameDaoImpl().findAll();
-		Iterator<Name> it = names.iterator();
-		while (it.hasNext()) {
-			Name definedName = it.next();
-			if (definedName.equals(name)) {
-				return name;
+		if (null != names) {
+			Iterator<Name> it = names.iterator();
+			while (it.hasNext()) {
+				Name definedName = it.next();
+				if (definedName.equals(name)) {
+					return name;
+				}
 			}
 		}
 		return null;
 	}
+
 	public Organization isOrganizationAlreadyDefined(Organization organization) {
 		List<Organization> organizations = new OrganizationDaoImpl().findAll();
 		Iterator<Organization> it = organizations.iterator();

@@ -19,9 +19,18 @@
 
 		<tr>
 
-			<td><a href="login">Login</a></td>
-
-			<td><a href="register">Register</a></td>
+			&emsp;
+			<a href="admin_page.jsp">Manage Account</a> &emsp;&emsp;
+			<a href="Profile.jsp">Profile</a> &emsp;&emsp;
+			<a href="Createandupdateuser.jsp">Create/Update User</a> &emsp;&emsp;
+			<a href="Addetails.jsp">Add Category/Reasons</a> &emsp;&emsp;
+			<a href="SearchData.jsp">Search Data</a> &emsp;&emsp;
+			<a href="userSettlement.jsp">Cash Sheet</a> &emsp;&emsp;
+			<a href="DataAnalysis.jsp">Data Analysis</a> &emsp;&emsp;
+			<a href="logout.jsp">Logout</a>
+			<br>
+			<br>
+			<br>
 
 		</tr>
 

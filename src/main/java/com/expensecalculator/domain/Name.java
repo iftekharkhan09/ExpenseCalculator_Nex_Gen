@@ -90,8 +90,8 @@ public class Name {
 			return false;
 		}
 		Name name = (Name) obj;
-		return (firstName == name.firstName || (firstName != null && firstName.equals(name.getFirstName())))
+		return (firstName == name.firstName || (firstName != null && firstName.equals(name.getFirstName()))
 				&& (lastName == name.lastName || (lastName != null && lastName.equals(name.getLastName())))
-				&& (this.title.getId() == name.title.getId());
+				&& (this.title.getId() == name.title.getId()));
 	}
 }
