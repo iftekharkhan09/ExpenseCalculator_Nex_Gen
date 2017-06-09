@@ -1,14 +1,14 @@
 package com.expensecalculator.domain;
 
-import java.util.Collection;
 import java.util.Date;
-
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,7 +31,9 @@ public class Expense {
 	private java.util.Date dateOfPurchase;
 	@Temporal(TemporalType.DATE)
 	private Date updatedDatetime;
-	// private Collection users;
+	@OneToMany
+	@JoinTable(name = "expense_excluded_users", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private Set<User> excludedUsers;
 	@Column(name = "quantity_purchased")
 	private double qunatityPurchased;
 	@OneToOne

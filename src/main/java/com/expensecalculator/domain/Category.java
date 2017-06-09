@@ -15,10 +15,6 @@ import javax.persistence.Table;
 @NamedQueries({ @NamedQuery(name = "Category.findAll", query = "select c from Category c"),
 		@NamedQuery(name = "Category.findUnique", query = "select c.description from Category c where c.id=:categoryID") })
 public class Category implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6367723960262471263L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

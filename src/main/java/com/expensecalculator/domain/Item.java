@@ -1,6 +1,5 @@
 package com.expensecalculator.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +14,7 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String Description;
+	private String description;
 	@OneToOne
 	@JoinColumn(name = "unit_id")
 	private Unit unit;
@@ -29,14 +28,6 @@ public class Item {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getDescription() {
-		return Description;
-	}
-
-	public void setDescription(String description) {
-		Description = description;
 	}
 
 	public Unit getUnit() {
@@ -53,5 +44,13 @@ public class Item {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -7,42 +7,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="USER")
-@NamedQueries({
-		@NamedQuery(name="User.findAll",query="select u from User u"),
-		@NamedQuery(name="User.findUnique",query="select u from User u where u.id=:userID")
-})
+@Table(name = "USER")
+@NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u"),
+		@NamedQuery(name = "User.findUnique", query = "select u from User u where u.id=:userID") })
 public class User {
 	@OneToOne
-	@JoinColumn(name="organization_id")
+	@JoinColumn(name = "organization_id")
 	private Organization organization;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="username")
+	@Column(name = "username")
 	private String username;
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	@Column(name="start_date")
-	private Date startDate;
-	@Column(name="leaving_date")
+	@Column(name = "start_date")
+	private Date startDate = new Date();
+	@Column(name = "leaving_date")
 	private Date leavingDate;
 	@OneToOne
-	@JoinColumn(name="name_id")
+	@JoinColumn(name = "name_id")
 	private Name name;
 	@OneToOne
-	@JoinColumn(name="gender_id")
+	@JoinColumn(name = "gender_id")
 	private Gender gender;
-	@Column(name="mobile_no")
+	@Column(name = "mobile_no")
 	private String mobileNo;
+	@ManyToOne
+	@JoinColumn(name = "excluded_user_id")
+	private Expense expense;
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -86,9 +91,11 @@ public class User {
 	public void setLeavingDate(Date leavingDate) {
 		this.leavingDate = leavingDate;
 	}
+
 	public String getMobileNo() {
 		return mobileNo;
 	}
+
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
