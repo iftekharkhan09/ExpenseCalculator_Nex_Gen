@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.dao.GenericDao;
+import com.expensecalculator.dao.OrganizationDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
@@ -43,6 +44,14 @@ public class StaffServiceImpl implements StaffService {
 
 	@Autowired
 	private Gender gender;
+	
+	@Autowired
+	private Organization organization;
+	
+	@Autowired
+	private ObjectComparator objectComparator;
+	/*@Autowired
+	private OrganizationDao organizationDao;*/
 
 	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
@@ -66,7 +75,7 @@ public class StaffServiceImpl implements StaffService {
 		title = new TitleDaoImpl().findUnique(1);
 		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
 		Name name = new Name();
-		name = new ObjectComparator().isNameAlreadyDefined(inputName);
+		name = objectComparator.isNameAlreadyDefined(inputName);
 		if (null != name) {
 			// do Nothing..
 		} else {
@@ -85,8 +94,7 @@ public class StaffServiceImpl implements StaffService {
 		staff.setUserName(staffRegistrationBean.getUserName());
 		staff.setGender(gender);
 		Organization inputOrganization = new Organization(staffRegistrationBean.getOrganization());
-		Organization organization = new Organization();
-		organization = new ObjectComparator().isOrganizationAlreadyDefined(inputOrganization);
+		organization = objectComparator.isOrganizationAlreadyDefined(inputOrganization);
 		if (null != organization) {
 			// do Nothing..
 		} else {

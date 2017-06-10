@@ -3,6 +3,8 @@ package com.expensecalculator.utils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.springframework.stereotype.Component;
+@Component
 public class MachineDetails {
 	public String getIPAddress() {
 		try {

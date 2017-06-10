@@ -2,11 +2,15 @@ package com.expensecalculator.utils;
 
 import java.util.Iterator;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
 import com.expensecalculator.domain.Name;
 import com.expensecalculator.domain.Organization;
 
+@Component
 public class ObjectComparator {
 	public Name isNameAlreadyDefined(Name name) {
 		List<Name> names = new NameDaoImpl().findAll();

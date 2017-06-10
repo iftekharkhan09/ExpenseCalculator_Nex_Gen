@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+@Component
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({ @NamedQuery(name = "Organization.findAll", query = "select o from Organization o"),
