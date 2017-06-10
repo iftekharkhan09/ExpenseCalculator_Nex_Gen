@@ -7,7 +7,7 @@ import org.apache.log4j.PatternLayout;
 
 import com.expensecalculator.utils.ReadPropertiesFile;
 
-public class MonitoringLogProcesser {
+public class MonitoringLogProcessor {
 	FileAppender fileAppender;
 	public void setLog4jProperties() {
 		ReadPropertiesFile readPropertiesFile = new ReadPropertiesFile();
