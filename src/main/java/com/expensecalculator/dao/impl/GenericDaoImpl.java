@@ -9,8 +9,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Component;
+
 import com.expensecalculator.dao.GenericDao;
 
+@Component
 public class GenericDaoImpl<T> implements GenericDao<T> {
 	private static final String PERSISTENCE_UNIT_NAME = "expenseCalculator";
 	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)

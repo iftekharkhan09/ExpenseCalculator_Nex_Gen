@@ -1,6 +1,7 @@
 package com.expensecalculator.dao;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import com.expensecalculator.domain.Name;
 
 public interface NameDao {

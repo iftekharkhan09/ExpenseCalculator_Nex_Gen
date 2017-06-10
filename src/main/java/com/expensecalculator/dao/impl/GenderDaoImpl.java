@@ -3,9 +3,13 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Component;
+
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.domain.Gender;
 
+@Component
 public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 	@Override
 	public Gender findUnique(int id) {

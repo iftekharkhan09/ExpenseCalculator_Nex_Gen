@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Component;
+
 import com.expensecalculator.dao.OrganizationDao;
 import com.expensecalculator.domain.Name;
 import com.expensecalculator.domain.Organization;
 
+@Component
 public class OrganizationDaoImpl extends GenericDaoImpl<Organization> implements OrganizationDao {
 	@Override
 	public Organization findUnique(int organizationId) {

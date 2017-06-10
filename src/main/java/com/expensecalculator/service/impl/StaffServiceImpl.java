@@ -1,6 +1,12 @@
 package com.expensecalculator.service.impl;
 
 import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.expensecalculator.dao.GenderDao;
+import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
@@ -17,28 +23,43 @@ import com.expensecalculator.ui.beans.StaffRegistrationBean;
 import com.expensecalculator.utils.MachineDetails;
 import com.expensecalculator.utils.ObjectComparator;
 
+@Component
 public class StaffServiceImpl implements StaffService {
+	@Autowired
+	private StaffDao staffDao;
+
+	@Autowired
+	GenderDao genderDao;
+
+	@Autowired
+	Staff staff;
+
+	@Autowired
+	Title title;
+
+	@Autowired
+	Gender gender;
+
 	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
-			Staff staff = new StaffDaoImpl().findUnique(loginBean.getUserName());
-			if (null != staff) {
-				if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
-						&& staff.getPassword().equals(loginBean.getPassword())) {
-					staff.setLastLogin(new Date());
-					new StaffDaoImpl().update(staff);
-					return staff;
-				} else if (staff.getIsBlocked() == 'N' && staff != null
-						&& staff.getUserName().equals(loginBean.getUserName())) {
-					updateUnsuccessfulAttemptsAndBlockedStatus(staff);
-				}
+		Staff staff = staffDao.findUnique(loginBean.getUserName());
+		if (null != staff) {
+			if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
+					&& staff.getPassword().equals(loginBean.getPassword())) {
+				staff.setLastLogin(new Date());
+				new StaffDaoImpl().update(staff);
+				return staff;
+			} else if (staff.getIsBlocked() == 'N' && staff != null
+					&& staff.getUserName().equals(loginBean.getUserName())) {
+				updateUnsuccessfulAttemptsAndBlockedStatus(staff);
 			}
+		}
 		return null;
 	}
 
 	@Override
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
-		Staff staff = new Staff();
-		Title title = new TitleDaoImpl().findUnique(1);
+		title = new TitleDaoImpl().findUnique(1);
 		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
 		Name name = new Name();
 		name = new ObjectComparator().isNameAlreadyDefined(inputName);
@@ -47,7 +68,7 @@ public class StaffServiceImpl implements StaffService {
 		} else {
 			name = new NameDaoImpl().create(inputName);
 		}
-		Gender gender = new GenderDaoImpl().findUnique(1);
+		gender = genderDao.findUnique(1);
 		staff.setEmail(staffRegistrationBean.getEmail());
 		staff.setName(name);
 		staff.setIpAddress(new MachineDetails().getIPAddress());
