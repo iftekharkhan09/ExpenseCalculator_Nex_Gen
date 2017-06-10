@@ -9,6 +9,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "TITLE")
 @NamedQueries({

@@ -13,6 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "STAFF")
 @NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),

@@ -3,9 +3,9 @@ package com.expensecalculator.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Service
 public interface GenericDao<T> {
 	T create(T t);
 	void delete(Object id);

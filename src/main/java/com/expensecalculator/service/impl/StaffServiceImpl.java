@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.expensecalculator.dao.GenderDao;
+import com.expensecalculator.dao.GenericDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
@@ -27,22 +28,25 @@ import com.expensecalculator.utils.ObjectComparator;
 public class StaffServiceImpl implements StaffService {
 	@Autowired
 	private StaffDao staffDao;
+	
+/*	@Autowired
+	private GenericDao<Staff> genericDao;*/
 
 	@Autowired
-	GenderDao genderDao;
+	private GenderDao genderDao;
 
 	@Autowired
-	Staff staff;
+	private Staff staff;
 
 	@Autowired
-	Title title;
+	private Title title;
 
 	@Autowired
-	Gender gender;
+	private Gender gender;
 
 	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
-		Staff staff = staffDao.findUnique(loginBean.getUserName());
+		staff = staffDao.findUnique(loginBean.getUserName());
 		if (null != staff) {
 			if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
 					&& staff.getPassword().equals(loginBean.getPassword())) {

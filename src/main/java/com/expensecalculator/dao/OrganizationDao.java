@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.expensecalculator.domain.Organization;
 
-@Service
 public interface OrganizationDao {
 	Organization findUnique(int organizationId);
 	List<Organization> findAll(); 

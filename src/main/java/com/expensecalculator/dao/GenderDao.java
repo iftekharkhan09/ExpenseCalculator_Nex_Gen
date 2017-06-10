@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.expensecalculator.domain.Gender;
 
-@Service
 public interface GenderDao {
 	public Gender findUnique(int id);
 	public List<Gender> findAll(); 

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.expensecalculator.dao.GenericDao;
 
-@Component
 public class GenericDaoImpl<T> implements GenericDao<T> {
 	private static final String PERSISTENCE_UNIT_NAME = "expenseCalculator";
 	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
