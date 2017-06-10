@@ -20,16 +20,18 @@ import com.expensecalculator.utils.ObjectComparator;
 public class StaffServiceImpl implements StaffService {
 	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
-		Staff staff = new StaffDaoImpl().findUnique(loginBean.getUserName());
-		if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
-				&& staff.getPassword().equals(loginBean.getPassword())) {
-			staff.setLastLogin(new Date());
-			new StaffDaoImpl().update(staff);
-			return staff;
-		} else if (staff.getIsBlocked() == 'N' && staff != null
-				&& staff.getUserName().equals(loginBean.getUserName())) {
-			updateUnsuccessfulAttemptsAndBlockedStatus(staff);
-		}
+			Staff staff = new StaffDaoImpl().findUnique(loginBean.getUserName());
+			if (null != staff) {
+				if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
+						&& staff.getPassword().equals(loginBean.getPassword())) {
+					staff.setLastLogin(new Date());
+					new StaffDaoImpl().update(staff);
+					return staff;
+				} else if (staff.getIsBlocked() == 'N' && staff != null
+						&& staff.getUserName().equals(loginBean.getUserName())) {
+					updateUnsuccessfulAttemptsAndBlockedStatus(staff);
+				}
+			}
 		return null;
 	}
 
@@ -75,7 +77,7 @@ public class StaffServiceImpl implements StaffService {
 	public void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff) {
 		int unsuccessfullLoginAttempts = staff.getUnsuccessfullLoginAttempts();
 		staff.setUnsuccessfullLoginAttempts(unsuccessfullLoginAttempts + 1);
-		if (unsuccessfullLoginAttempts + 1 > 3) 
+		if (unsuccessfullLoginAttempts + 1 > 3)
 			staff.setIsBlocked('Y');
 		new StaffDaoImpl().update(staff);
 	}

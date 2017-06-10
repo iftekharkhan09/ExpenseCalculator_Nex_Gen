@@ -31,6 +31,9 @@ public class LoginController {
 			model.addAttribute("staffData",staff);
 			return "profilePage";
 		}
+		else if() {
+			
+		}
 		return "profileNotFound";
 	}
 }

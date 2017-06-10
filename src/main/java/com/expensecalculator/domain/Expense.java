@@ -1,4 +1,4 @@
-package com.expensecalculator.domain;
+/*package com.expensecalculator.domain;
 
 import java.util.Date;
 import java.util.Set;
@@ -46,4 +46,4 @@ public class Expense {
 	private User updatedBy;
 	@Column(name = "comments")
 	private String comments;
-}
+}*/

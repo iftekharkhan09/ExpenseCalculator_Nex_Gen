@@ -24,11 +24,13 @@ public class ObjectComparator {
 
 	public Organization isOrganizationAlreadyDefined(Organization organization) {
 		List<Organization> organizations = new OrganizationDaoImpl().findAll();
-		Iterator<Organization> it = organizations.iterator();
-		while (it.hasNext()) {
-			Organization definedOrganization = it.next();
-			if (definedOrganization.equals(organization)) {
-				return organization;
+		if (null != organizations) {
+			Iterator<Organization> it = organizations.iterator();
+			while (it.hasNext()) {
+				Organization definedOrganization = it.next();
+				if (definedOrganization.equals(organization)) {
+					return organization;
+				}
 			}
 		}
 		return null;
