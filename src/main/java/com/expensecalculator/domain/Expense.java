@@ -1,4 +1,4 @@
-/*package com.expensecalculator.domain;
+package com.expensecalculator.domain;
 
 import java.util.Date;
 import java.util.Set;
@@ -35,7 +35,7 @@ public class Expense {
 	@JoinTable(name = "expense_excluded_users", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> excludedUsers;
 	@Column(name = "quantity_purchased")
-	private double qunatityPurchased;
+	private double quantityPurchased;
 	@OneToOne
 	@JoinColumn(name = "amount_paid_by")
 	private User amountPaidBy;
@@ -46,4 +46,4 @@ public class Expense {
 	private User updatedBy;
 	@Column(name = "comments")
 	private String comments;
-}*/
+}

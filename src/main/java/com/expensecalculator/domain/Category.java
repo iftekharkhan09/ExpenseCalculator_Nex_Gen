@@ -1,7 +1,5 @@
 package com.expensecalculator.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "CATEGORY")
 @NamedQueries({ @NamedQuery(name = "Category.findAll", query = "select c from Category c"),
 		@NamedQuery(name = "Category.findUnique", query = "select c.description from Category c where c.id=:categoryID") })
-public class Category implements Serializable {
+public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

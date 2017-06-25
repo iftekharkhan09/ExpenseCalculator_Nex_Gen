@@ -1,4 +1,4 @@
-/*package com.expensecalculator.domain;
+package com.expensecalculator.domain;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class User {
 	private String mobileNo;
 	@ManyToOne
 	@JoinColumn(name = "excluded_user_id")
-	//private Expense expense;
+	private Expense expense;
 
 	public String getUsername() {
 		return username;
@@ -99,4 +99,4 @@ public class User {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-}*/
+}

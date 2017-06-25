@@ -4,6 +4,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class LoginBean {
+	public LoginBean() {
+	}
+
+	public LoginBean(String userName, String organizationName, String password) {
+		this.userName = userName;
+		OrganizationName = organizationName;
+		this.password = password;
+	}
+
 	@NotNull
 	@Size(min=6,max=30,message="Size should be between 6 and 30")
 	private String userName;

@@ -29,9 +29,6 @@ import com.expensecalculator.utils.ObjectComparator;
 public class StaffServiceImpl implements StaffService {
 	@Autowired
 	private StaffDao staffDao;
-	
-/*	@Autowired
-	private GenericDao<Staff> genericDao;*/
 
 	@Autowired
 	private GenderDao genderDao;

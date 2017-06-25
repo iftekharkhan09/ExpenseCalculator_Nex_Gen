@@ -4,15 +4,21 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import com.expensecalculator.utils.ReadPropertiesFile;
 
+@Component
 public class MonitoringLogProcessor {
 	FileAppender fileAppender;
+
 	public void setLog4jProperties() {
+		final String propertiesFilePath = "D:\\Log4j.properties";
 		ReadPropertiesFile readPropertiesFile = new ReadPropertiesFile();
-		String monitoringfile = readPropertiesFile.getValue("monitoringFile", "D:\\Log4j.properties");
-		final String LoggingLevel = readPropertiesFile.getValue("LEVEL", "D:\\Log4j.properties");
+		String monitoringfile = readPropertiesFile.getValue("monitoringFile", propertiesFilePath);
+		final String LoggingLevel = readPropertiesFile.getValue("LEVEL", propertiesFilePath);
 		PatternLayout layout = new PatternLayout();
 		String conversionPattern = "%d{yyyy-MM-dd HH:mm:ss} [%-4p] [%t] %c:%L - %m%n";
 		layout.setConversionPattern(conversionPattern);

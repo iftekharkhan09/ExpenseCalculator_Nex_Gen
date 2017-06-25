@@ -1,4 +1,4 @@
-/*package com.expensecalculator.domain;
+package com.expensecalculator.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,4 +54,3 @@ public class Item {
 		this.description = description;
 	}
 }
-*/

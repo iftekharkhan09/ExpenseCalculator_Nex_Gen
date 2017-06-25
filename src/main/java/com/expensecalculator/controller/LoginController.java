@@ -1,7 +1,10 @@
 package com.expensecalculator.controller;
 
 import javax.validation.Valid;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,14 +15,16 @@ import com.expensecalculator.domain.Staff;
 import com.expensecalculator.service.StaffService;
 import com.expensecalculator.ui.beans.LoginBean;
 
+@Configuration
+@EnableAspectJAutoProxy
 @Controller
 public class LoginController {
+	final static Logger logger = Logger.getLogger(LoginController.class);
 	private StaffService staffService;
 	@Autowired
 	public LoginController(StaffService staffService) {
 		this.staffService = staffService;
 	}
-	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showLoginPage(Model model) {
@@ -28,13 +33,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/showProfile", method = RequestMethod.POST)
-	public String redirectToprofile(@ModelAttribute("loginBean") LoginBean loginBean,Model model,@Valid LoginBean loginBeans, Errors errors) {
-		if(errors.hasErrors()) {
+	public String redirectToprofile(@ModelAttribute("loginBean") LoginBean loginBean, Model model,
+			@Valid LoginBean loginBeans, Errors errors) {
+		if (errors.hasErrors()) {
 			return "login";
 		}
 		Staff staff = staffService.authenticateStaff(loginBean);
 		if (null != staff) {
-			model.addAttribute("staffData",staff);
+			model.addAttribute("staffData", staff);
 			return "profilePage";
 		}
 		return "profileNotFound";
