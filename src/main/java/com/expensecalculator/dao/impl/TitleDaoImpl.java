@@ -10,10 +10,11 @@ import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.domain.Title;
 
 @Component
-public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
+public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao {
 	@Override
 	public Title findUnique(int id) {
-		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
+		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass)
+				.setHint("org.hibernate.cacheable", "true");
 		query.setParameter("id", id);
 		Title title = null;
 		try {
@@ -26,7 +27,8 @@ public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
 
 	@Override
 	public List<Title> findAll() {
-		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findAll", domainClass);
+		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findAll", domainClass)
+				.setHint("org.hibernate.cacheable", "true");
 		List<Title> titleList = null;
 		try {
 			titleList = query.getResultList();
@@ -38,7 +40,8 @@ public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
 
 	@Override
 	public Title findByTitle(String title) {
-		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findByTitle", domainClass);
+		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findByTitle", domainClass)
+				.setHint("org.hibernate.cacheable", "true");
 		query.setParameter("title", title);
 		Title titleDetail = null;
 		try {
@@ -48,5 +51,4 @@ public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao{
 		}
 		return titleDetail;
 	}
-
 }

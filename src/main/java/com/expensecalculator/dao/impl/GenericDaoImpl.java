@@ -10,6 +10,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import com.expensecalculator.dao.GenericDao;
@@ -24,11 +25,19 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 	protected Class<T> domainClass;
 	/** The domain object name. */
 	protected String domainObjectName = null;
+	
+	public synchronized static EntityManagerFactory getfactory(){
+		if (null == factory) {
+			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		}
+		System.out.println(factory);
+		return factory;
+	}
 
 	@SuppressWarnings("unchecked")
 	public GenericDaoImpl() {
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		em = factory.createEntityManager();
+		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em = getfactory().createEntityManager();
 		domainClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		Entity entityAnn = (Entity) domainClass.getAnnotation(Entity.class);
 		if (entityAnn != null && !entityAnn.name().equals("")) {

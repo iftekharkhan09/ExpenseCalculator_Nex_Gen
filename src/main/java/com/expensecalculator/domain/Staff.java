@@ -2,6 +2,7 @@ package com.expensecalculator.domain;
 
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +15,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
 @Table(name = "STAFF")
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
 		@NamedQuery(name = "Staff.findByUsernameAndPass", query = "select s from Staff s where s.userName=:username and s.password=:password") })
 public class Staff {

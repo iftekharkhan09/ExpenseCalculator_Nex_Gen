@@ -1,5 +1,6 @@
 package com.expensecalculator.domain;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +9,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "CATEGORY")
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "Category.findAll", query = "select c from Category c"),
 		@NamedQuery(name = "Category.findUnique", query = "select c.description from Category c where c.id=:categoryID") })
 public class Category {

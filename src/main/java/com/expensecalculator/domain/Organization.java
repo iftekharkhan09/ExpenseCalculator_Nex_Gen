@@ -1,5 +1,6 @@
 package com.expensecalculator.domain;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +10,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "ORGANIZATION")
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "Organization.findAll", query = "select o from Organization o"),
 		@NamedQuery(name = "Organization.findUnique", query = "select o from Organization o where o.id=:organizationId"),
 		@NamedQuery(name = "Organization.findByName", query = "select o from Organization o where o.OrganizationName=:organizationName") })

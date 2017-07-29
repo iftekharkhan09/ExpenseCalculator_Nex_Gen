@@ -1,6 +1,8 @@
 package com.expensecalculator.domain;
 
 import java.util.Date;
+
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "USER")
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u"),
 		@NamedQuery(name = "User.findUnique", query = "select u from User u where u.id=:userID") })
 public class User {
