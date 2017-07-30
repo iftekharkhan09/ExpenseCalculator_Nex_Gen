@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,10 +22,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+@NamedQueries({ @NamedQuery(name = "Expense.findAll()", query = "select e from Expense e"), 
+				@NamedQuery(name = "Expense.findUnique()", query = "select e from Expense e where e.id=:expenseId") })
 @Entity
 @Table(name = "EXPENSE")
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Expense {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +43,7 @@ public class Expense {
 	@Temporal(TemporalType.DATE)
 	private Date updatedDatetime;
 	@OneToMany
-	@JoinTable(name = "expense_excluded_users", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JoinTable(name = "EXPENSE_EXCLUDED_USERS", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> excludedUsers;
 	@Column(name = "quantity_purchased")
 	private double quantityPurchased;

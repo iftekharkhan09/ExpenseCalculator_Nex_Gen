@@ -1,5 +1,7 @@
 package com.expensecalculator.controller;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,10 @@ import com.expensecalculator.ui.beans.LoginBean;
 @Configuration
 @EnableAspectJAutoProxy
 @Controller
-public class LoginController {
+public class LoginController{
 	final static Logger logger = Logger.getLogger(LoginController.class);
 	private StaffService staffService;
+
 	@Autowired
 	public LoginController(StaffService staffService) {
 		this.staffService = staffService;
@@ -45,4 +48,15 @@ public class LoginController {
 		}
 		return "profileNotFound";
 	}
+	
+	@PostConstruct
+	public void init(){
+		logger.debug("LoginController Bean has been Initialized.");
+	}
+	
+	@PreDestroy
+	public void destroy(){
+		logger.debug("LoginController Bean has been Destroyed.");
+	}
+	
 }
