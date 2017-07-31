@@ -9,10 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-
-import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
-
 import com.expensecalculator.dao.GenericDao;
 
 public class GenericDaoImpl<T> implements GenericDao<T> {

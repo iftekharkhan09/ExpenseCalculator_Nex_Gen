@@ -58,5 +58,4 @@ public class LoginController{
 	public void destroy(){
 		logger.debug("LoginController Bean has been Destroyed.");
 	}
-	
 }

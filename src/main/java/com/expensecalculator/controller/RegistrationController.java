@@ -44,11 +44,11 @@ public class RegistrationController {
 
 	@PostConstruct
 	public void init(){
-		logger.debug("LoginController Bean has been Initialized.");
+		logger.debug("RegistrationController Bean has been Initialized.");
 	}
 	
 	@PreDestroy
 	public void destroy(){
-		logger.debug("LoginController Bean has been Destroyed.");
+		logger.debug("RegistrationController Bean has been Destroyed.");
 	}
 }
