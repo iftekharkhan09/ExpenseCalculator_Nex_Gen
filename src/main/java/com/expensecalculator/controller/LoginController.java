@@ -49,12 +49,12 @@ public class LoginController {
 		return "profileNotFound";
 	}
 
-	@RequestMapping(value = "/login?logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginPage?logout", method = RequestMethod.GET)
 	public String showLogoutPage() {
 		return "logout";
 	}
 
-	@RequestMapping(value = "/login?error", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginPage?error", method = RequestMethod.GET)
 	public String showErrorPage() {
 		return "logout";
 	}

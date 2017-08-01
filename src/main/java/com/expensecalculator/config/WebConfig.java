@@ -18,7 +18,7 @@ import com.expensecalculator.security.SecurityConfig;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.expensecalculator.config" })
-@Import(SecurityConfig.class)
+@Import(value={SecurityConfig.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver viewResolver() {
