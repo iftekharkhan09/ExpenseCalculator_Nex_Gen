@@ -26,7 +26,6 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 		if (null == factory) {
 			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		}
-		System.out.println(factory);
 		return factory;
 	}
 

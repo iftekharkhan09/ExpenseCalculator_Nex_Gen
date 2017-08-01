@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.dao.GenericDao;
+import com.expensecalculator.dao.NameDao;
 import com.expensecalculator.dao.OrganizationDao;
 import com.expensecalculator.dao.StaffDao;
+import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
@@ -43,10 +45,16 @@ public class StaffServiceImpl implements StaffService {
 	private Gender gender;
 	
 	@Autowired
+	private NameDao nameDao;
+	
+	@Autowired
 	private Organization organization;
 	
 	@Autowired
 	private ObjectComparator objectComparator;
+	
+	@Autowired
+	private TitleDao titleDao;
 	/*@Autowired
 	private OrganizationDao organizationDao;*/
 
@@ -69,7 +77,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
-		title = new TitleDaoImpl().findUnique(1);
+		title = titleDao.findUnique(1);
 		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
 		Name name = new Name();
 		name = objectComparator.isNameAlreadyDefined(inputName);
@@ -78,7 +86,8 @@ public class StaffServiceImpl implements StaffService {
 		} else {
 			name = new NameDaoImpl().create(inputName);
 		}
-		gender = genderDao.findUnique(1);
+		gender = new GenderDaoImpl().findUnique(1);
+		Gender gender1=gender;
 		staff.setEmail(staffRegistrationBean.getEmail());
 		staff.setName(name);
 		staff.setIpAddress(new MachineDetails().getIPAddress());
@@ -89,7 +98,7 @@ public class StaffServiceImpl implements StaffService {
 		staff.setPassword(staffRegistrationBean.getPassword());
 		staff.setStartDate(new Date());
 		staff.setUserName(staffRegistrationBean.getUserName());
-		staff.setGender(gender);
+		staff.setGender(gender1);
 		Organization inputOrganization = new Organization(staffRegistrationBean.getOrganization());
 		organization = objectComparator.isOrganizationAlreadyDefined(inputOrganization);
 		if (null != organization) {

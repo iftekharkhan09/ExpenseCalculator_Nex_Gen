@@ -20,7 +20,7 @@ import com.expensecalculator.ui.beans.LoginBean;
 @Configuration
 @EnableAspectJAutoProxy
 @Controller
-public class LoginController{
+public class LoginController {
 	final static Logger logger = Logger.getLogger(LoginController.class);
 	private StaffService staffService;
 
@@ -48,14 +48,24 @@ public class LoginController{
 		}
 		return "profileNotFound";
 	}
-	
+
+	@RequestMapping(value = "/login?logout", method = RequestMethod.GET)
+	public String showLogoutPage() {
+		return "logout";
+	}
+
+	@RequestMapping(value = "/login?error", method = RequestMethod.GET)
+	public String showErrorPage() {
+		return "logout";
+	}
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		logger.debug("LoginController Bean has been Initialized.");
 	}
-	
+
 	@PreDestroy
-	public void destroy(){
+	public void destroy() {
 		logger.debug("LoginController Bean has been Destroyed.");
 	}
 }
