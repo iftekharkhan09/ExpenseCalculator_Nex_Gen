@@ -35,7 +35,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/showProfile", method = RequestMethod.POST)
+	@RequestMapping(value = "/showProfile", method = RequestMethod.GET)
 	public String redirectToprofile(@ModelAttribute("loginBean") LoginBean loginBean, Model model,
 			@Valid LoginBean loginBeans, Errors errors) {
 		if (errors.hasErrors()) {
