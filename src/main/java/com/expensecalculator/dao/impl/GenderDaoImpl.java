@@ -5,11 +5,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.domain.Gender;
 
 @Component
+@Transactional
 public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 	@Override
 	public Gender findUnique(int id) {

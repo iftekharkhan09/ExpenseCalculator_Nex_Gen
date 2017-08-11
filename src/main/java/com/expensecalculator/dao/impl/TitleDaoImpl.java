@@ -5,11 +5,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.domain.Title;
 
 @Component
+@Transactional
 public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao {
 	@Override
 	public Title findUnique(int id) {

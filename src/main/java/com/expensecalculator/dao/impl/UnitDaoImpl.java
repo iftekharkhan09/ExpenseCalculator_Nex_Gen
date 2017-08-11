@@ -3,9 +3,15 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.expensecalculator.dao.UnitDao;
 import com.expensecalculator.domain.Unit;
 
+@Component
+@Transactional
 public class UnitDaoImpl extends GenericDaoImpl<Unit> implements UnitDao {
 
 	@Override
