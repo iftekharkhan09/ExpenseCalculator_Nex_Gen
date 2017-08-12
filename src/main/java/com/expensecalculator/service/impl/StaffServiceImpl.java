@@ -58,7 +58,6 @@ public class StaffServiceImpl implements StaffService {
 	/*@Autowired
 	private OrganizationDao organizationDao;*/
 
-	@Override
 	public Staff authenticateStaff(LoginBean loginBean) {
 		staff = staffDao.findUnique(loginBean.getUserName());
 		if (null != staff) {
@@ -75,7 +74,6 @@ public class StaffServiceImpl implements StaffService {
 		return null;
 	}
 
-	@Override
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
 		title = titleDao.findUnique(1);
 		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
@@ -112,7 +110,6 @@ public class StaffServiceImpl implements StaffService {
 		return true;
 	}
 
-	@Override
 	public void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff) {
 		int unsuccessfullLoginAttempts = staff.getUnsuccessfullLoginAttempts();
 		staff.setUnsuccessfullLoginAttempts(unsuccessfullLoginAttempts + 1);
