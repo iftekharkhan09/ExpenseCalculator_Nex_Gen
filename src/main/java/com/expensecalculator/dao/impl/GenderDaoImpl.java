@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
-
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.domain.Gender;
 
