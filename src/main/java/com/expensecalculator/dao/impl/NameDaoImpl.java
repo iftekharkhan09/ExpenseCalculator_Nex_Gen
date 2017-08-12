@@ -22,9 +22,6 @@ public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 		}
 		return nameList;
 	}
-
-
-	@Override
 	public Name findUnique(int id) {
 		TypedQuery<Name> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
 		query.setParameter("id", id);
@@ -36,8 +33,6 @@ public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 		}
 		return name;
 	}
-
-	@Override
 	public Name findByName(String firstName, String lastName) {
 		TypedQuery<Name> query = em.createNamedQuery(domainObjectName + ".findByName", domainClass);
 		query.setParameter("firstName", firstName);
@@ -50,9 +45,6 @@ public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 		}
 		return name;
 	}
-
-
-	@Override
 	public Name findByfirstName(String firstName) {
 		TypedQuery<Name> query = em.createNamedQuery(domainObjectName + ".findByFirstName", domainClass);
 		query.setParameter("firstName", firstName);
@@ -64,9 +56,6 @@ public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 		}
 		return name;
 	}
-
-
-	@Override
 	public Name findByLastName(String lastName) {
 		TypedQuery<Name> query = em.createNamedQuery(domainObjectName + ".findByLastName", domainClass);
 		query.setParameter("firstName", lastName);

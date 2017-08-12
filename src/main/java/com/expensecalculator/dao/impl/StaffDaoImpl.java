@@ -22,8 +22,6 @@ public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 		}
 		return staff;
 	}
-
-	@Override
 	public Staff findByUsernameAndPassword(String userName, String password) {
 		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserNameAndPass", domainClass);
 		query.setParameter("username", userName);
@@ -36,7 +34,6 @@ public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 		}
 		return staff;
 	}
-
 	public boolean addStaff(Staff staff) {
 		create(staff);
 		return true;

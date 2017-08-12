@@ -7,8 +7,6 @@ import com.expensecalculator.dao.UnitDao;
 import com.expensecalculator.domain.Unit;
 
 public class UnitDaoImpl extends GenericDaoImpl<Unit> implements UnitDao {
-
-	@Override
 	public Unit findUnique(int id) {
 		TypedQuery<Unit> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
 		query.setParameter("id", id);
@@ -20,7 +18,6 @@ public class UnitDaoImpl extends GenericDaoImpl<Unit> implements UnitDao {
 		}
 		return unit;
 	}
-
 	@Override
 	public List<Unit> findAll() {
 		TypedQuery<Unit> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
@@ -32,8 +29,6 @@ public class UnitDaoImpl extends GenericDaoImpl<Unit> implements UnitDao {
 		}
 		return units;
 	}
-
-	@Override
 	public Unit findByUnit(String unitDescription) {
 		TypedQuery<Unit> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
 		query.setParameter("description", unitDescription);
