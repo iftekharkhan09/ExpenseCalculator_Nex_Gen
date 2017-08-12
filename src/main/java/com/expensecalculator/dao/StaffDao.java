@@ -1,7 +1,6 @@
 package com.expensecalculator.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import com.expensecalculator.domain.Staff;
 
 @Repository
