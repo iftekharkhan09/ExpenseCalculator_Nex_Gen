@@ -2,23 +2,13 @@ package com.expensecalculator.dao.impl;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-<<<<<<< HEAD
 import org.springframework.stereotype.Repository;
-=======
-
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
->>>>>>> refs/remotes/origin/DevBranch
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.domain.Staff;
 
-<<<<<<< HEAD
 @Repository
-=======
 @Component
-@Transactional
->>>>>>> refs/remotes/origin/DevBranch
 public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 	public Staff findUnique(String userName) {
 		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserName", domainClass);
