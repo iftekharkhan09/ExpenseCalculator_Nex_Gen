@@ -3,13 +3,12 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.domain.Gender;
 
-@Component
+@Repository
 public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 	public Gender findUnique(int id) {
 		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass)

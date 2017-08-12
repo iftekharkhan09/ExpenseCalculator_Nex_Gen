@@ -12,31 +12,31 @@ import com.expensecalculator.domain.Organization;
 
 @Component
 public class ObjectComparator {
-	public Name isNameAlreadyDefined(Name name) {
+	public boolean isNameAlreadyDefined(Name name) {
 		List<Name> names = new NameDaoImpl().findAll();
 		if (null != names) {
 			Iterator<Name> it = names.iterator();
 			while (it.hasNext()) {
 				Name definedName = it.next();
 				if (definedName.equals(name)) {
-					return name;
+					return true;
 				}
 			}
 		}
-		return null;
+		return false;
 	}
 
-	public Organization isOrganizationAlreadyDefined(Organization organization) {
+	public boolean isOrganizationAlreadyDefined(Organization organization) {
 		List<Organization> organizations = new OrganizationDaoImpl().findAll();
 		if (null != organizations) {
 			Iterator<Organization> it = organizations.iterator();
 			while (it.hasNext()) {
 				Organization definedOrganization = it.next();
 				if (definedOrganization.equals(organization)) {
-					return organization;
+					return true;
 				}
 			}
 		}
-		return null;
+		return false;
 	}
 }

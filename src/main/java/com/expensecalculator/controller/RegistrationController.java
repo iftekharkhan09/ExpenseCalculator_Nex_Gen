@@ -36,8 +36,8 @@ public class RegistrationController {
 	@RequestMapping(method = RequestMethod.POST, value = "/registerStaff")
 	public String registerStaff(@ModelAttribute("staffRegistrationBean") StaffRegistrationBean staffRegistrationBean,
 			@Valid StaffRegistrationBean staffRegistrationBeans, Errors errors, Model model) {
-		if (errors.hasErrors())
-			return "register";
+//		if (errors.hasErrors())
+//			return "register";
 		staffService.createStaff(staffRegistrationBean);
 		return "RegistrationDone";
 	}

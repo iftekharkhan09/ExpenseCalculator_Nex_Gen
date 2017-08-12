@@ -1,21 +1,14 @@
 package com.expensecalculator.service.impl;
 
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Service;
 import com.expensecalculator.dao.GenderDao;
-import com.expensecalculator.dao.GenericDao;
-import com.expensecalculator.dao.NameDao;
-import com.expensecalculator.dao.OrganizationDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.TitleDao;
-import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
 import com.expensecalculator.dao.impl.StaffDaoImpl;
-import com.expensecalculator.dao.impl.TitleDaoImpl;
 import com.expensecalculator.domain.Gender;
 import com.expensecalculator.domain.Name;
 import com.expensecalculator.domain.Organization;
@@ -27,7 +20,7 @@ import com.expensecalculator.ui.beans.StaffRegistrationBean;
 import com.expensecalculator.utils.MachineDetails;
 import com.expensecalculator.utils.ObjectComparator;
 
-@Component
+@Service
 public class StaffServiceImpl implements StaffService {
 	@Autowired
 	private StaffDao staffDao;
@@ -43,20 +36,18 @@ public class StaffServiceImpl implements StaffService {
 
 	@Autowired
 	private Gender gender;
-	
+
 	@Autowired
-	private NameDao nameDao;
-	
+	private Name name;
+
 	@Autowired
 	private Organization organization;
-	
+
 	@Autowired
 	private ObjectComparator objectComparator;
-	
+
 	@Autowired
 	private TitleDao titleDao;
-	/*@Autowired
-	private OrganizationDao organizationDao;*/
 
 	public Staff authenticateStaff(LoginBean loginBean) {
 		staff = staffDao.findUnique(loginBean.getUserName());
@@ -77,15 +68,16 @@ public class StaffServiceImpl implements StaffService {
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
 		title = titleDao.findUnique(1);
 		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
-		Name name = new Name();
-		name = objectComparator.isNameAlreadyDefined(inputName);
-		if (null != name) {
+		boolean isNameAlreadydefined;
+		isNameAlreadydefined = objectComparator.isNameAlreadyDefined(inputName);
+		if (isNameAlreadydefined) {
 			// do Nothing..
 		} else {
-			name = new NameDaoImpl().create(inputName);
+			new NameDaoImpl().create(inputName);
 		}
-		gender = new GenderDaoImpl().findUnique(1);
-		Gender gender1=gender;
+		gender = genderDao.findUnique(1);
+		name = new NameDaoImpl().findByName(inputName.getFirstName(), inputName.getLastName());
+		staff.setGender(gender);
 		staff.setEmail(staffRegistrationBean.getEmail());
 		staff.setName(name);
 		staff.setIpAddress(new MachineDetails().getIPAddress());
@@ -96,17 +88,18 @@ public class StaffServiceImpl implements StaffService {
 		staff.setPassword(staffRegistrationBean.getPassword());
 		staff.setStartDate(new Date());
 		staff.setUserName(staffRegistrationBean.getUserName());
-		staff.setGender(gender1);
 		Organization inputOrganization = new Organization(staffRegistrationBean.getOrganization());
-		organization = objectComparator.isOrganizationAlreadyDefined(inputOrganization);
-		if (null != organization) {
+		boolean isOrganizationAlreadyDefined;
+		isOrganizationAlreadyDefined = objectComparator.isOrganizationAlreadyDefined(inputOrganization);
+		if (isOrganizationAlreadyDefined) {
 			// do Nothing..
 		} else {
-			organization = new OrganizationDaoImpl().create(inputOrganization);
+			new OrganizationDaoImpl().create(inputOrganization);
 		}
+		organization = new OrganizationDaoImpl().findByName(inputOrganization.getOrganizationName());
 		staff.setOrganization(organization);
 		staff.setMobileNo(staffRegistrationBean.getPhoneNo());
-		new StaffDaoImpl().create(staff);
+		new StaffDaoImpl().update(staff);
 		return true;
 	}
 

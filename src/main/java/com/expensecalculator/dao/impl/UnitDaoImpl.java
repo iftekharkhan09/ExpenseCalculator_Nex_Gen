@@ -3,9 +3,11 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 import com.expensecalculator.dao.UnitDao;
 import com.expensecalculator.domain.Unit;
 
+@Repository
 public class UnitDaoImpl extends GenericDaoImpl<Unit> implements UnitDao {
 	public Unit findUnique(int id) {
 		TypedQuery<Unit> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);

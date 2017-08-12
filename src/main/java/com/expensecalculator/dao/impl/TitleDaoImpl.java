@@ -3,13 +3,11 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Repository;
 import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.domain.Title;
 
-@Component
+@Repository
 public class TitleDaoImpl extends GenericDaoImpl<Title> implements TitleDao {
 	public Title findUnique(int id) {
 		TypedQuery<Title> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass)

@@ -14,10 +14,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "NAME")
 @Cacheable
+@Component
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "Name.findAll", query = "select n from Name n"),
 		@NamedQuery(name = "Name.findByFirstName", query = "select n from Name n where n.firstName=:firstName"),

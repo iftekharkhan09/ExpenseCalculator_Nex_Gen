@@ -3,13 +3,12 @@ package com.expensecalculator.dao.impl;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.expensecalculator.dao.NameDao;
 import com.expensecalculator.domain.Name;
 
-@Component
+@Repository
 public class NameDaoImpl extends GenericDaoImpl<Name> implements NameDao{
 	@Override
 	public List<Name> findAll() {

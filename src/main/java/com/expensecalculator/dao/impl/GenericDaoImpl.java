@@ -45,7 +45,8 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 	public T create(T t) {
 		etr = em.getTransaction();
 		etr.begin();
-		em.persist(t);
+		//em.persist(t);
+		em.merge(t);
 		etr.commit();
 		return t;
 	}
