@@ -15,7 +15,7 @@ public class MonitoringLogProcessor {
 	FileAppender fileAppender;
 
 	public void setLog4jProperties() {
-		final String propertiesFilePath = "D:\\Log4j.properties";
+		final String propertiesFilePath = "/Users/iftekharahmedkhan/git/ExpenseCalculator_Nex_Gen/Log4j.properties";
 		ReadPropertiesFile readPropertiesFile = new ReadPropertiesFile();
 		String monitoringfile = readPropertiesFile.getValue("monitoringFile", propertiesFilePath);
 		final String LoggingLevel = readPropertiesFile.getValue("LEVEL", propertiesFilePath);
