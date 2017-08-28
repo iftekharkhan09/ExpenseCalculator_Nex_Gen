@@ -25,20 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-		// http.authorizeRequests().antMatchers("/profile/**,/addExpense,/users","/register")
-		// .access("hasRole('ADMIN')").and().formLogin().loginPage("/").loginProcessingUrl("/")
-		// .usernameParameter("username").passwordParameter("password").and().rememberMe()
-		// .rememberMeParameter("remember").tokenRepository(tokenRepository).tokenValiditySeconds(6400).and()
-		// .csrf().and().exceptionHandling().accessDeniedPage("/accessDenied");
-
-//		http.authorizeRequests().antMatchers("/register").access("hasRole('ADMIN')").and().formLogin().loginPage("/")
-//				.loginProcessingUrl("/").usernameParameter("username").passwordParameter("password");
-=======
-		http.authorizeRequests().antMatchers("/EditUser").hasRole("ADMIN").antMatchers("").hasAnyRole("ADMIN or USER")
-				.and().formLogin().loginPage("/").loginProcessingUrl("/").usernameParameter("username")
-				.passwordParameter("password");
->>>>>>> refs/remotes/origin/DevBranch
+//		http.authorizeRequests().antMatchers("/EditUser").hasRole("ADMIN").antMatchers("/showProfile").hasAnyRole("ADMIN or USER")
+//				.and().formLogin().loginPage("/").loginProcessingUrl("/").usernameParameter("username")
+//				.passwordParameter("password");
 	}
 
 	@Autowired

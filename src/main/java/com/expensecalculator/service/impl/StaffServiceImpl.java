@@ -22,6 +22,8 @@ import com.expensecalculator.utils.ObjectComparator;
 
 @Service
 public class StaffServiceImpl implements StaffService {
+	private final int NOOFALLOWEDUNSUCCESSFULATTEMPTS = 3;
+
 	@Autowired
 	private StaffDao staffDao;
 
@@ -72,9 +74,8 @@ public class StaffServiceImpl implements StaffService {
 		isNameAlreadydefined = objectComparator.isNameAlreadyDefined(inputName);
 		if (isNameAlreadydefined) {
 			// do Nothing..
-		} else {
+		} else
 			new NameDaoImpl().create(inputName);
-		}
 		gender = genderDao.findUnique(1);
 		name = new NameDaoImpl().findByName(inputName.getFirstName(), inputName.getLastName());
 		staff.setGender(gender);
@@ -99,14 +100,14 @@ public class StaffServiceImpl implements StaffService {
 		organization = new OrganizationDaoImpl().findByName(inputOrganization.getOrganizationName());
 		staff.setOrganization(organization);
 		staff.setMobileNo(staffRegistrationBean.getPhoneNo());
-		new StaffDaoImpl().update(staff);
+		new StaffDaoImpl().create(staff);
 		return true;
 	}
 
 	public void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff) {
 		int unsuccessfullLoginAttempts = staff.getUnsuccessfullLoginAttempts();
 		staff.setUnsuccessfullLoginAttempts(unsuccessfullLoginAttempts + 1);
-		if (unsuccessfullLoginAttempts + 1 > 3)
+		if (unsuccessfullLoginAttempts + 1 > NOOFALLOWEDUNSUCCESSFULATTEMPTS)
 			staff.setIsBlocked('Y');
 		new StaffDaoImpl().update(staff);
 	}

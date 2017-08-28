@@ -21,9 +21,11 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.stereotype.Component;
 
+@Component
 @NamedQueries({ @NamedQuery(name = "Expense.findAll()", query = "select e from Expense e"), 
-				@NamedQuery(name = "Expense.findUnique()", query = "select e from Expense e where e.id=:expenseId") })
+			@NamedQuery(name = "Expense.findUnique()", query = "select e from Expense e where e.id=:expenseId") })
 @Entity
 @Table(name = "EXPENSE")
 @Cacheable
@@ -32,9 +34,11 @@ public class Expense {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne
-	@JoinColumn(name = "item_id")
-	private Item item;
+//	@OneToOne
+//	@JoinColumn(name = "item_id")
+//	private Item item;
+	@Column(name="item")
+	private String item;
 	@OneToOne
 	@JoinColumn(name = "reason_id")
 	private Reason reason;
@@ -57,4 +61,67 @@ public class Expense {
 	private User updatedBy;
 	@Column(name = "comments")
 	private String comments;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+//	public Item getItem() {
+//		return item;
+//	}
+//	public void setItem(Item item) {
+//		this.item = item;
+//	}
+	public Reason getReason() {
+		return reason;
+	}
+	public void setReason(Reason reason) {
+		this.reason = reason;
+	}
+	public java.util.Date getDateOfPurchase() {
+		return dateOfPurchase;
+	}
+	public void setDateOfPurchase(java.util.Date dateOfPurchase) {
+		this.dateOfPurchase = dateOfPurchase;
+	}
+	public Date getUpdatedDatetime() {
+		return updatedDatetime;
+	}
+	public void setUpdatedDatetime(Date updatedDatetime) {
+		this.updatedDatetime = updatedDatetime;
+	}
+	public double getQuantityPurchased() {
+		return quantityPurchased;
+	}
+	public void setQuantityPurchased(double quantityPurchased) {
+		this.quantityPurchased = quantityPurchased;
+	}
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public User getAmountPaidBy() {
+		return amountPaidBy;
+	}
+	public void setAmountPaidBy(User amountPaidBy) {
+		this.amountPaidBy = amountPaidBy;
+	}
+	public User getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
 }

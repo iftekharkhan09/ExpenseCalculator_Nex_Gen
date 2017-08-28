@@ -31,6 +31,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showLoginPage(Model model) {
+		logger.info("Login called!!");
 		model.addAttribute("loginBean", new LoginBean());
 		return "login";
 	}

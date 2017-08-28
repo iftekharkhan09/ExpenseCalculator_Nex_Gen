@@ -12,4 +12,5 @@ public interface GenericDao<T> {
 	List<T> findAll();
 	void createAll(List<T> list);
 	int deleteAll();
+	public void createEntityCriteria(T t) ;
 }

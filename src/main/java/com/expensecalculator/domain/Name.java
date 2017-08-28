@@ -11,7 +11,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
@@ -45,7 +44,7 @@ public class Name {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@OneToOne
+	@OneToOne(orphanRemoval=true)
 	@JoinColumn(name = "title_id")
 	private Title title;
 

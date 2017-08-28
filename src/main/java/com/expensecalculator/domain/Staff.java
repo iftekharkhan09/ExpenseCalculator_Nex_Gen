@@ -1,7 +1,6 @@
 package com.expensecalculator.domain;
 
 import java.util.Date;
-
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
@@ -27,7 +26,7 @@ import org.springframework.stereotype.Component;
 @NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
 		@NamedQuery(name = "Staff.findByUsernameAndPass", query = "select s from Staff s where s.userName=:username and s.password=:password") })
 public class Staff {
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "organization_id")
 	private Organization organization;
 	@Id
@@ -35,6 +34,7 @@ public class Staff {
 	private int id;
 	@Column(name = "ip_address")
 	private String ipAddress;
+	@NotNull
 	@Column(name = "username")
 	private String userName;
 	@Column(name = "password")
@@ -47,14 +47,14 @@ public class Staff {
 	private char isBlocked;
 	@Column(name = "unsuccessful_login_attempts", columnDefinition = "integer default '0'")
 	private int unsuccessfullLoginAttempts;
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "name_id")
 	private Name name;
 	@Column(name = "is_admin", columnDefinition = "char(1) default 'N'")
 	private char isAdmin;
 	@Column
 	private String email;
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne
 	@JoinColumn(name = "gender_id")
 	private Gender gender;
 	@Column(name = "last_login")

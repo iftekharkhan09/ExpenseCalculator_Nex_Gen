@@ -29,7 +29,6 @@ public class RegistrationController {
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
 	public String registerStaffPage(Model model) {
 		model.addAttribute("staffRegistrationBean", new StaffRegistrationBean());
-		//model.addAttribute("genderList", new GenderDaoImpl().findAll());
 		return "register";
 	}
 
