@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<<<<<<< HEAD
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,6 +39,32 @@
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 			</tr> --%>
+=======
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" href="css\styles.css">
+</head>
+<body>
+	<h2>Login page</h2>
+	<form:form method="POST" modelAttribute="loginBean"
+		action="showProfile">
+		<table>
+			<tr>
+				<td><form:label path="userName" cssErrorClass="error"><spring:message code="userName"/> : </form:label>
+					<form:input path="userName" cssErrorClass="error" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="OrganizationName" cssErrorClass="error"><spring:message code="organizationName"/> : </form:label>
+					<form:input path="OrganizationName" cssErrorClass="error" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="password" cssErrorClass="error"><spring:message code="password"/> : </form:label>
+					<form:input path="password" cssErrorClass="error" /></td>
+			</tr>
+>>>>>>> branch 'DevBranch' of https://github.com/iftekharkhan09/ExpenseCalculator_Nex_Gen.git
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /></td>
 			</tr>
