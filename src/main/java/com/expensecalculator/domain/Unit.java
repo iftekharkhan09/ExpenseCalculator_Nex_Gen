@@ -16,9 +16,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name="UNIT")
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
-@NamedQueries({@NamedQuery(name="Unit.findAll",query="select u from Unit u"),
-			   @NamedQuery(name="Unit.findUnique",query="select u from Unit u where u.id=:unitId"),
-			   @NamedQuery(name="Unit.findByUnit",query="select u from Unit u where u.description=:description")
+@NamedQueries({@NamedQuery(name="Unit.findAll()",query="select u from Unit u"),
+			   @NamedQuery(name="Unit.findUnique()",query="select u from Unit u where u.id=:unitId"),
+			   @NamedQuery(name="Unit.findByUnit()",query="select u from Unit u where u.description=:description")
 })
 public class Unit {
 	@Id

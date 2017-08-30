@@ -22,8 +22,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "USER")
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-@NamedQueries({ @NamedQuery(name = "User.findAll", query = "select u from User u"),
-		@NamedQuery(name = "User.findUnique", query = "select u from User u where u.id=:userID") })
+@NamedQueries({ @NamedQuery(name = "User.findAll()", query = "select u from User u"),
+		@NamedQuery(name = "User.findUnique()", query = "select u from User u where u.id=:userName") })
 public class User {
 	@OneToOne
 	@JoinColumn(name = "organization_id")
@@ -47,9 +47,9 @@ public class User {
 	private Gender gender;
 	@Column(name = "mobile_no")
 	private String mobileNo;
-	@ManyToOne
-	@JoinColumn(name = "excluded_user_id")
-	private Expense expense;
+//	@ManyToOne
+//	@JoinColumn(name = "excluded_user_id")
+//	private Expense expense;
 
 	public String getUsername() {
 		return username;

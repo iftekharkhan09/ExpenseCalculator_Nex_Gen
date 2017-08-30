@@ -2,7 +2,6 @@ package com.expensecalculator.controller;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.expensecalculator.dao.CategoryDao;
+import com.expensecalculator.dao.UnitDao;
+import com.expensecalculator.dao.UserDao;
 import com.expensecalculator.domain.Category;
+import com.expensecalculator.domain.Unit;
+import com.expensecalculator.domain.User;
 import com.expensecalculator.service.ExpenseService;
 import com.expensecalculator.ui.beans.ExpenseCreationBean;
 
@@ -26,37 +29,61 @@ public class ExpenseController {
 
 	@Autowired
 	private ExpenseService expenseService;
-	
+
 	@Autowired
 	private CategoryDao categoryDao;
+
+	@Autowired
+	private UserDao userDao;
 	
+	@Autowired
+	private UnitDao unitDao;
+
 	@RequestMapping(value = "/addDetails", method = RequestMethod.GET)
 	public String getExpenseEntryPage(Model model) {
-		model.addAttribute("expenseCreationBean", new ExpenseCreationBean());
-		System.out.println("I was here!!");
-		List<Category> list = categoryDao.findAll();
-		Iterator<Category> it = list.iterator();
-		List<String> descriptions = new LinkedList<String>();
+		List<Category> categories = categoryDao.findAll();
+		Iterator<Category> it = categories.iterator();
+		Map<Category, String> categoryMap = new LinkedHashMap<Category, String>();
 		while (it.hasNext()) {
-			descriptions.add(it.next().getDescription());
+			Category cat = it.next();
+			categoryMap.put(cat, cat.getDescription());
 		}
-		model.addAttribute("categoryList", descriptions);
+		List<User> users = userDao.findAllUsers();
+		Iterator<User> usersIterator = users.iterator();
+		Map<User, String> usersMap = new LinkedHashMap<User, String>();
+		while (usersIterator.hasNext()) {
+			User user = usersIterator.next();
+			usersMap.put(user, user.getUsername());
+		}
+		Map<Unit, String> unitsMap=new LinkedHashMap<Unit, String>();
+		List<Unit> units=unitDao.findAll();
+		Iterator<Unit> unitsIterator=units.iterator();
+		while(unitsIterator.hasNext()) {
+			Unit unit=unitsIterator.next();
+			unitsMap.put(unit,unit.getDescription());
+		}
+		model.addAttribute("users",users);
+		model.addAttribute("categoriesMap", categoryMap);
+		model.addAttribute("usersMap", usersMap);
+		model.addAttribute("unitsMap", unitsMap);
+		model.addAttribute("expenseCreationBean", new ExpenseCreationBean());
 		return "addDetails";
 	}
-	
-	@RequestMapping(value = "savedata", method = RequestMethod.POST)
-	public String addExpense(@ModelAttribute("expenseCreationBean") ExpenseCreationBean expenseCreationBean, Model model) {
+
+	@RequestMapping(value = "/savedata", method = RequestMethod.POST)
+	public String addExpense(@ModelAttribute("expenseCreationBean") ExpenseCreationBean expenseCreationBean,
+			Model model) {
 		expenseService.createExpense(expenseCreationBean);
 		return "expenseAdded";
 	}
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		logger.debug("ExpenseController Bean has been Initialised.");
 	}
-	
+
 	@PreDestroy
-	public void destroy(){
+	public void destroy() {
 		logger.debug("ExpenseController Bean has been Destroyed.");
 	}
 }

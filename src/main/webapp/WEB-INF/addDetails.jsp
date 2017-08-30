@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
 <title>Add Details</title>
@@ -33,22 +34,27 @@
 					name="date_of_purchase"></td>
 				<td>Item Name:<input type="text" name="description"></td>
 				<td>Category: <form:select path="category">
-						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${categoryList}" />
+						<form:options items="${categoriesMap}" />
 					</form:select>
 				</td>
-				<td>Paid By: <select name="paid_by"></td>
+				<td>Paid By: <form:select path="amountPaidBy">
+						<form:options items="${usersMap}" />
+					</form:select>
+				</td>
 				<td>Amount Paid:<input type="text" name="total_price"
 					id="total_price"></td>
 				<td>Quantity:<input type="text" name="quantity_purchased"></td>
-				<td>Unit:<input type="text" name="unit"></td>
+				<td>Unit:<form:select path="unit">
+						<form:options items="${unitsMap}" />
+					</form:select></td>
 			</tr>
 			<tr>
 			<tr>
 			<tr>
 			<tr>
 				<td>Exclude:</td>
-				<td><input TYPE="checkbox" name="exclude">
+				<td><form:checkboxes items="${usersMap}"
+						path="excludedUsers" /></td>
 			</tr>
 			<tr>
 				<td>Comments:<textarea rows="3" cols="25" name="comments"></textarea>

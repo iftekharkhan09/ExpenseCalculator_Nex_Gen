@@ -1,6 +1,7 @@
 package com.expensecalculator.ui.beans;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 import com.expensecalculator.domain.Category;
 import com.expensecalculator.domain.Unit;
@@ -22,12 +23,6 @@ public class ExpenseCreationBean {
 	}
 	public void setAmountPaid(double amountPaid) {
 		this.amountPaid = amountPaid;
-	}
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 	public Unit getUnit() {
 		return unit;
@@ -77,5 +72,10 @@ public class ExpenseCreationBean {
 	public void setQuantityPurchased(double quantityPurchased) {
 		this.quantityPurchased = quantityPurchased;
 	}
-	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 }

@@ -11,7 +11,7 @@ import com.expensecalculator.domain.Staff;
 @Component
 public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 	public Staff findUnique(String userName) {
-		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserName", domainClass);
+		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserName()", domainClass);
 		query.setParameter("username", userName);
 		Staff staff = null;
 		try {
@@ -22,7 +22,7 @@ public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
 		return staff;
 	}
 	public Staff findByUsernameAndPassword(String userName, String password) {
-		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserNameAndPass", domainClass);
+		TypedQuery<Staff> query = em.createNamedQuery(domainObjectName + ".findByUserNameAndPass()", domainClass);
 		query.setParameter("username", userName);
 		query.setParameter("password", password);
 		Staff staff = null;

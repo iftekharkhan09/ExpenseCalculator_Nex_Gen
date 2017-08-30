@@ -4,6 +4,9 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.expensecalculator.dao.ExpenseDao;
+import com.expensecalculator.dao.impl.ExpenseDaoImpl;
 import com.expensecalculator.domain.Expense;
 import com.expensecalculator.domain.User;
 import com.expensecalculator.service.ExpenseService;
@@ -15,6 +18,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	private Expense expense;
 
 	public boolean createExpense(ExpenseCreationBean expenseCreationBean) {
+		Expense expense=new Expense();
 		expense.setAmountPaidBy(expenseCreationBean.getAmountPaidBy());
 		expense.setComments(expenseCreationBean.getComments());
 		expense.setDateOfPurchase(expenseCreationBean.getDateOfPurchase());
@@ -24,6 +28,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		User u = null;
 		expense.setUpdatedBy(u);
 		expense.setUpdatedDatetime(new Date());
+		new ExpenseDaoImpl().create(expense);
 		return true;
 	}
 }
