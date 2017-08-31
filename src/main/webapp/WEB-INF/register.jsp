@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -18,6 +19,12 @@
 						<spring:message code="userName" /> : 
 					</form:label> <form:input path="userName" name="username" id="username"
 						cssErrorClass="error" /></td>
+			</tr>
+			<tr>
+				<td>Gender: <form:select path="gender">
+						<form:options items="${gendersMap}" />
+					</form:select>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="organization" cssErrorClass="error">

@@ -10,7 +10,7 @@ import com.expensecalculator.domain.Gender;
 @Repository
 public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 	public Gender findUnique(int id) {
-		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass)
+		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findUnique()", domainClass)
 				.setHint("org.hibernate.cacheable", "true");
 		query.setParameter("id", id);
 		Gender gender = null;
@@ -22,7 +22,7 @@ public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 		return gender;
 	}
 	public List<Gender> findAll() {
-		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findAll", domainClass)
+		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findAll()", domainClass)
 				.setHint("org.hibernate.cacheable", "true");
 		List<Gender> genderList = null;
 		try {
@@ -33,7 +33,7 @@ public class GenderDaoImpl extends GenericDaoImpl<Gender> implements GenderDao {
 		return genderList;
 	}
 	public Gender findByGender(String gender) {
-		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findByGender", domainClass)
+		TypedQuery<Gender> query = em.createNamedQuery(domainObjectName + ".findByGender()", domainClass)
 				.setHint("org.hibernate.cacheable", "true");
 		query.setParameter("gender", gender);
 		Gender genderDetail = null;

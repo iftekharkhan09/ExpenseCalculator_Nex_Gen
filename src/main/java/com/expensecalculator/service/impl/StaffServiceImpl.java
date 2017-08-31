@@ -76,7 +76,7 @@ public class StaffServiceImpl implements StaffService {
 			// do Nothing..
 		} else
 			new NameDaoImpl().create(inputName);
-		gender = genderDao.findUnique(1);
+		staff.setGender(staffRegistrationBean.getGender());
 		name = new NameDaoImpl().findByName(inputName.getFirstName(), inputName.getLastName());
 		staff.setGender(gender);
 		staff.setEmail(staffRegistrationBean.getEmail());

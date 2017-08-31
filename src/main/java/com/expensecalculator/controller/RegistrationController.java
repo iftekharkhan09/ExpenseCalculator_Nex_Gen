@@ -1,10 +1,13 @@
 package com.expensecalculator.controller;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +15,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.expensecalculator.dao.impl.GenderDaoImpl;
+import com.expensecalculator.dao.GenderDao;
+import com.expensecalculator.domain.Gender;
 import com.expensecalculator.service.StaffService;
 import com.expensecalculator.ui.beans.StaffRegistrationBean;
 
@@ -22,12 +26,23 @@ public class RegistrationController {
 	private StaffService staffService;
 
 	@Autowired
+	private GenderDao genderDao;
+
+	@Autowired
 	public RegistrationController(StaffService staffService) {
 		this.staffService = staffService;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
 	public String registerStaffPage(Model model) {
+		List<Gender> genders = genderDao.findAll();
+		Iterator<Gender> genderIterators = genders.iterator();
+		Map<Gender, String> genderMap = new LinkedHashMap<Gender, String>();
+		while (genderIterators.hasNext()) {
+			Gender gender = genderIterators.next();
+			genderMap.put(gender, gender.getGender());
+		}
+		model.addAttribute("gendersMap",genderMap);
 		model.addAttribute("staffRegistrationBean", new StaffRegistrationBean());
 		return "register";
 	}
@@ -35,19 +50,19 @@ public class RegistrationController {
 	@RequestMapping(method = RequestMethod.POST, value = "/registerStaff")
 	public String registerStaff(@ModelAttribute("staffRegistrationBean") StaffRegistrationBean staffRegistrationBean,
 			@Valid StaffRegistrationBean staffRegistrationBeans, Errors errors, Model model) {
-//		if (errors.hasErrors())
-//			return "register";
+		// if (errors.hasErrors())
+		// return "register";
 		staffService.createStaff(staffRegistrationBean);
 		return "RegistrationDone";
 	}
 
 	@PostConstruct
-	public void init(){
+	public void init() {
 		logger.debug("RegistrationController Bean has been Initialized.");
 	}
-	
+
 	@PreDestroy
-	public void destroy(){
+	public void destroy() {
 		logger.debug("RegistrationController Bean has been Destroyed.");
 	}
 }
