@@ -43,24 +43,24 @@ public class ExpenseController {
 	public String getExpenseEntryPage(Model model) {
 		List<Category> categories = categoryDao.findAll();
 		Iterator<Category> it = categories.iterator();
-		Map<Category, String> categoryMap = new LinkedHashMap<Category, String>();
+		Map<String, String> categoryMap = new LinkedHashMap<String, String>();
 		while (it.hasNext()) {
 			Category cat = it.next();
-			categoryMap.put(cat, cat.getDescription());
+			categoryMap.put(cat.getDescription(), cat.getDescription());
 		}
 		List<User> users = userDao.findAllUsers();
 		Iterator<User> usersIterator = users.iterator();
-		Map<User, String> usersMap = new LinkedHashMap<User, String>();
+		Map<String, String> usersMap = new LinkedHashMap<String, String>();
 		while (usersIterator.hasNext()) {
 			User user = usersIterator.next();
-			usersMap.put(user, user.getUsername());
+			usersMap.put(user.getUsername(), user.getUsername());
 		}
-		Map<Unit, String> unitsMap=new LinkedHashMap<Unit, String>();
+		Map<String, String> unitsMap=new LinkedHashMap<String, String>();
 		List<Unit> units=unitDao.findAll();
 		Iterator<Unit> unitsIterator=units.iterator();
 		while(unitsIterator.hasNext()) {
 			Unit unit=unitsIterator.next();
-			unitsMap.put(unit,unit.getDescription());
+			unitsMap.put(unit.getDescription(),unit.getDescription());
 		}
 		model.addAttribute("users",users);
 		model.addAttribute("categoriesMap", categoryMap);

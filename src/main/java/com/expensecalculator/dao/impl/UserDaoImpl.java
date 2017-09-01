@@ -13,7 +13,7 @@ import com.expensecalculator.domain.User;
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	public User findUnique(String userName) {
-		TypedQuery<User> query = em.createNamedQuery(domainObjectName + ".findUnique", domainClass);
+		TypedQuery<User> query = em.createNamedQuery(domainObjectName + ".findUnique()", domainClass);
 		query.setParameter(1, userName);
 		User user = null;
 		try {

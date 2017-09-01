@@ -34,9 +34,6 @@ public class Expense {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-//	@OneToOne
-//	@JoinColumn(name = "item_id")
-//	private Item item;
 	@Column(name="item")
 	private String item;
 	@OneToOne
@@ -51,6 +48,9 @@ public class Expense {
 	private Set<User> excludedUsers;
 	@Column(name = "quantity_purchased")
 	private double quantityPurchased;
+	@OneToOne
+	@JoinColumn(name="category")
+	private Category category;
 	@OneToOne
 	@JoinColumn(name = "amount_paid_by")
 	private User amountPaidBy;
@@ -67,12 +67,6 @@ public class Expense {
 	public void setId(int id) {
 		this.id = id;
 	}
-//	public Item getItem() {
-//		return item;
-//	}
-//	public void setItem(Item item) {
-//		this.item = item;
-//	}
 	public Reason getReason() {
 		return reason;
 	}
@@ -123,5 +117,11 @@ public class Expense {
 	}
 	public void setItem(String item) {
 		this.item = item;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

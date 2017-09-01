@@ -24,8 +24,21 @@ public class CategoryDaoImpl extends GenericDaoImpl<Category> implements Categor
 	}
 
 	public Category findUnique(int id) {
-		TypedQuery<Category> query = em.createNamedQuery(domainObjectName + ".findUnique()", domainClass);
+		TypedQuery<Category> query = em.createNamedQuery(domainObjectName + ".findUniqueById()", domainClass);
 		query.setParameter(1, id);
+		Category category = null;
+		try {
+			category = query.getSingleResult();
+		} catch (Exception e) {
+			category = null;
+		}
+		return category;
+	}
+
+	@Override
+	public Category findUnique(String description) {
+		TypedQuery<Category> query = em.createNamedQuery(domainObjectName + ".findUniqueByDescription()", domainClass);
+		query.setParameter(1, description);
 		Category category = null;
 		try {
 			category = query.getSingleResult();

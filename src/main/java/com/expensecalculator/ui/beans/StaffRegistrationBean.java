@@ -25,7 +25,7 @@ public class StaffRegistrationBean {
 	@NotNull
 	@Size(min=10,max=10,message="Invalid Mobile No")
 	private String phoneNo;
-	private Gender gender;
+	private String gender;
 	public String getUserName() {
 		return userName;
 	}
@@ -82,11 +82,11 @@ public class StaffRegistrationBean {
 		this.phoneNo = phoneNo;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

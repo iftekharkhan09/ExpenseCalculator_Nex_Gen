@@ -37,10 +37,10 @@ public class RegistrationController {
 	public String registerStaffPage(Model model) {
 		List<Gender> genders = genderDao.findAll();
 		Iterator<Gender> genderIterators = genders.iterator();
-		Map<Gender, String> genderMap = new LinkedHashMap<Gender, String>();
+		Map<String, String> genderMap = new LinkedHashMap<String, String>();
 		while (genderIterators.hasNext()) {
 			Gender gender = genderIterators.next();
-			genderMap.put(gender, gender.getGender());
+			genderMap.put(gender.getGender(), gender.getGender());
 		}
 		model.addAttribute("gendersMap",genderMap);
 		model.addAttribute("staffRegistrationBean", new StaffRegistrationBean());

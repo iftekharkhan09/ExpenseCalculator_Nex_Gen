@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.TitleDao;
+import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
 import com.expensecalculator.dao.impl.StaffDaoImpl;
@@ -76,7 +77,8 @@ public class StaffServiceImpl implements StaffService {
 			// do Nothing..
 		} else
 			new NameDaoImpl().create(inputName);
-		staff.setGender(staffRegistrationBean.getGender());
+		Gender gender=genderDao.findByGender(staffRegistrationBean.getGender());
+		staff.setGender(gender);
 		name = new NameDaoImpl().findByName(inputName.getFirstName(), inputName.getLastName());
 		staff.setGender(gender);
 		staff.setEmail(staffRegistrationBean.getEmail());
