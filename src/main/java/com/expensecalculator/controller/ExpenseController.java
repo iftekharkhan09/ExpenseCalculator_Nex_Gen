@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import org.apache.log4j.Logger;
@@ -35,7 +34,7 @@ public class ExpenseController {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private UnitDao unitDao;
 
@@ -55,14 +54,14 @@ public class ExpenseController {
 			User user = usersIterator.next();
 			usersMap.put(user.getUsername(), user.getUsername());
 		}
-		Map<String, String> unitsMap=new LinkedHashMap<String, String>();
-		List<Unit> units=unitDao.findAll();
-		Iterator<Unit> unitsIterator=units.iterator();
-		while(unitsIterator.hasNext()) {
-			Unit unit=unitsIterator.next();
-			unitsMap.put(unit.getDescription(),unit.getDescription());
+		Map<String, String> unitsMap = new LinkedHashMap<String, String>();
+		List<Unit> units = unitDao.findAll();
+		Iterator<Unit> unitsIterator = units.iterator();
+		while (unitsIterator.hasNext()) {
+			Unit unit = unitsIterator.next();
+			unitsMap.put(unit.getDescription(), unit.getDescription());
 		}
-		model.addAttribute("users",users);
+		model.addAttribute("users", users);
 		model.addAttribute("categoriesMap", categoryMap);
 		model.addAttribute("usersMap", usersMap);
 		model.addAttribute("unitsMap", unitsMap);

@@ -17,8 +17,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "Category.findAll()", query = "select c from Category c"),
-		@NamedQuery(name = "Category.findUniqueById()", query = "select c.description from Category c where c.id=:categoryID"),
-		@NamedQuery(name = "Category.findUniqueByDescription()", query = "select c.description from Category c where c.description=:description") })
+		@NamedQuery(name = "Category.findUniqueById()", query = "select c from Category c where c.id=:categoryID"),
+		@NamedQuery(name = "Category.findUniqueByDescription()", query = "select c from Category c where c.description=:description") })
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

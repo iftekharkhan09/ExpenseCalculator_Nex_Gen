@@ -1,12 +1,9 @@
 package com.expensecalculator.service.impl;
 
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.expensecalculator.dao.CategoryDao;
-import com.expensecalculator.dao.ExpenseDao;
 import com.expensecalculator.dao.UserDao;
 import com.expensecalculator.dao.impl.ExpenseDaoImpl;
 import com.expensecalculator.domain.Category;

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.expensecalculator.dao.GenderDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.TitleDao;
-import com.expensecalculator.dao.impl.GenderDaoImpl;
 import com.expensecalculator.dao.impl.NameDaoImpl;
 import com.expensecalculator.dao.impl.OrganizationDaoImpl;
 import com.expensecalculator.dao.impl.StaffDaoImpl;
@@ -33,12 +32,6 @@ public class StaffServiceImpl implements StaffService {
 
 	@Autowired
 	private Staff staff;
-
-	@Autowired
-	private Title title;
-
-	@Autowired
-	private Gender gender;
 
 	@Autowired
 	private Name name;
@@ -69,8 +62,9 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
-		title = titleDao.findUnique(1);
-		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName(), title);
+		Title title=titleDao.findByTitle(staffRegistrationBean.getTitle());
+		staff.setTitle(title);
+		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName());
 		boolean isNameAlreadydefined;
 		isNameAlreadydefined = objectComparator.isNameAlreadyDefined(inputName);
 		if (isNameAlreadydefined) {

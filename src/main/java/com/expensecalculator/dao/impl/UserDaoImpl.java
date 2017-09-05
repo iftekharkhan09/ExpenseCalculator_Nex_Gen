@@ -14,7 +14,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	public User findUnique(String userName) {
 		TypedQuery<User> query = em.createNamedQuery(domainObjectName + ".findUnique()", domainClass);
-		query.setParameter(1, userName);
+		query.setParameter("username", userName);
 		User user = null;
 		try {
 			user = query.getSingleResult();

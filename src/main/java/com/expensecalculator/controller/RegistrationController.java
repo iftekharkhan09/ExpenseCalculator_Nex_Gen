@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.expensecalculator.dao.GenderDao;
+import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.domain.Gender;
+import com.expensecalculator.domain.Title;
 import com.expensecalculator.service.StaffService;
 import com.expensecalculator.ui.beans.StaffRegistrationBean;
 
@@ -27,6 +29,9 @@ public class RegistrationController {
 
 	@Autowired
 	private GenderDao genderDao;
+	
+	@Autowired
+	private TitleDao titleDao;
 
 	@Autowired
 	public RegistrationController(StaffService staffService) {
@@ -42,6 +47,14 @@ public class RegistrationController {
 			Gender gender = genderIterators.next();
 			genderMap.put(gender.getGender(), gender.getGender());
 		}
+		Map<String, String> titleMap = new LinkedHashMap<String, String>();
+		List<Title> titles = titleDao.findAll();
+		Iterator<Title> titleIterator = titles.iterator();
+		while (titleIterator.hasNext()) {
+			Title title = titleIterator.next();
+			titleMap.put(title.getTitle(), title.getTitle());
+		}
+		model.addAttribute("titleMap", titleMap);
 		model.addAttribute("gendersMap",genderMap);
 		model.addAttribute("staffRegistrationBean", new StaffRegistrationBean());
 		return "register";

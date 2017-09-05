@@ -31,10 +31,9 @@ public class Name {
 		super();
 	}
 
-	public Name(String firstName, String lastName, Title title) {
+	public Name(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.title = title;
 	}
 
 	@Id
@@ -44,17 +43,6 @@ public class Name {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@OneToOne(orphanRemoval=true)
-	@JoinColumn(name = "title_id")
-	private Title title;
-
-	public Title getTitle() {
-		return title;
-	}
-
-	public void setTitle(Title title) {
-		this.title = title;
-	}
 
 	public int getId() {
 		return id;
@@ -83,8 +71,7 @@ public class Name {
 	@Override
 	public int hashCode() {
 		int primeNumber = 17;
-		int titleId = title.getId();
-		return (primeNumber * firstName.hashCode() + lastName.hashCode()) + titleId;
+		return (primeNumber * firstName.hashCode() + lastName.hashCode());
 
 	}
 
@@ -98,7 +85,6 @@ public class Name {
 		}
 		Name name = (Name) obj;
 		return (firstName == name.firstName || (firstName != null && firstName.equals(name.getFirstName()))
-				&& (lastName == name.lastName || (lastName != null && lastName.equals(name.getLastName())))
-				&& (this.title.getId() == name.title.getId()));
+				&& (lastName == name.lastName || (lastName != null && lastName.equals(name.getLastName()))));
 	}
 }

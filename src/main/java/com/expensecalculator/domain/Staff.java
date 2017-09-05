@@ -61,6 +61,9 @@ public class Staff {
 	private Date lastLogin;
 	@Column(name = "mobile_no")
 	private String mobileNo;
+	@OneToOne
+	@JoinColumn(name="title_id")
+	private Title title;
 
 	public String getPassword() {
 		return password;
@@ -180,5 +183,13 @@ public class Staff {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	public Title getTitle() {
+		return title;
+	}
+
+	public void setTitle(Title title) {
+		this.title = title;
 	}
 }

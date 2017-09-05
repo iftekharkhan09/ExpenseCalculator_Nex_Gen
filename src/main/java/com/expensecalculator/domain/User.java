@@ -23,7 +23,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({ @NamedQuery(name = "User.findAll()", query = "select u from User u"),
-		@NamedQuery(name = "User.findUnique()", query = "select u from User u where u.id=:userName") })
+		@NamedQuery(name = "User.findUnique()", query = "select u from User u where u.username=:username") })
 public class User {
 	@OneToOne
 	@JoinColumn(name = "organization_id")

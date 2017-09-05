@@ -21,6 +21,12 @@
 						cssErrorClass="error" /></td>
 			</tr>
 			<tr>
+				<td>Title: <form:select path="title">
+						<form:options items="${titleMap}" />
+					</form:select>
+				</td>
+			</tr>
+			<tr>
 				<td>Gender: <form:select path="gender">
 						<form:options items="${gendersMap}" />
 					</form:select>

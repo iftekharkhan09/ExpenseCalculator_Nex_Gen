@@ -20,9 +20,9 @@ import org.springframework.stereotype.Component;
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @NamedQueries({
-	@NamedQuery(name="Title.findAll",query="select t from Title t"),
-	@NamedQuery(name="Title.findUnique",query="select t from Title t where t.id=:id"),
-	@NamedQuery(name="Title.findByTitle",query="select t from Title t where t.title=:title")
+	@NamedQuery(name="Title.findAll()",query="select t from Title t"),
+	@NamedQuery(name="Title.findUnique()",query="select t from Title t where t.id=:id"),
+	@NamedQuery(name="Title.findByTitle()",query="select t from Title t where t.title=:title")
 })
 public class Title {
 	@Id
