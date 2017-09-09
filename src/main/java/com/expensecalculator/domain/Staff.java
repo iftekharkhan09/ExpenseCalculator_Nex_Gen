@@ -1,6 +1,8 @@
 package com.expensecalculator.domain;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -26,9 +30,9 @@ import org.springframework.stereotype.Component;
 @NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
 		@NamedQuery(name = "Staff.findByUsernameAndPass", query = "select s from Staff s where s.userName=:username and s.password=:password") })
 public class Staff {
-	@OneToOne(cascade=CascadeType.REMOVE)
-	@JoinColumn(name = "organization_id")
-	private Organization organization;
+	@ManyToMany
+	@JoinTable(name="STAFF_ORGANIZATION",joinColumns=@JoinColumn(name="staff_id"),inverseJoinColumns=@JoinColumn(name="organization_id"))
+	private Set<Organization> organizations;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -161,14 +165,6 @@ public class Staff {
 		this.gender = gender;
 	}
 
-	public Organization getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
-	}
-
 	public Name getName() {
 		return name;
 	}
@@ -191,5 +187,13 @@ public class Staff {
 
 	public void setTitle(Title title) {
 		this.title = title;
+	}
+
+	public Set<Organization> getOrganizations() {
+		return organizations;
+	}
+
+	public void setOrganizations(Set<Organization> organizations) {
+		this.organizations = organizations;
 	}
 }

@@ -1,30 +1,40 @@
 package com.expensecalculator.domain;
 
-import javax.annotation.Generated;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name="USERROLES")
+@Table(name = "USER_ROLES")
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class UserRoles {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private User user;
-	@Column(name="user_role")
-	private String roles;
+
+	public enum Roles {
+		USER(100), ADMIN(200);
+		private int values;
+
+		Roles(int values) {
+			this.values = values;
+		}
+
+		public int getValues() {
+			return values;
+		}
+	}
+
+	@Column
+	@Enumerated(EnumType.ORDINAL)
+	private Roles roles;
 }

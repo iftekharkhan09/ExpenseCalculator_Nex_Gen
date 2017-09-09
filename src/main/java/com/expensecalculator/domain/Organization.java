@@ -1,11 +1,15 @@
 package com.expensecalculator.domain;
 
+import java.util.Set;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,6 +26,14 @@ import org.springframework.stereotype.Component;
 		@NamedQuery(name = "Organization.findUnique", query = "select o from Organization o where o.id=:organizationId"),
 		@NamedQuery(name = "Organization.findByName", query = "select o from Organization o where o.OrganizationName=:organizationName") })
 public class Organization {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column
+	private String OrganizationName;
+	@ManyToMany(mappedBy="organizations")
+	private Set<Staff> staff;
+	
 	public Organization() {
 		super();
 	}
@@ -30,11 +42,13 @@ public class Organization {
 		this.OrganizationName = organizationName;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
-	private String OrganizationName;
+	public Set<Staff> getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Set<Staff> staff) {
+		this.staff = staff;
+	}
 
 	public String getOrganizationName() {
 		return OrganizationName;
