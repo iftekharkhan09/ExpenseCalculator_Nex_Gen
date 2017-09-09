@@ -13,13 +13,16 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "USER_ROLES")
+@Table(name = "STAFF_ROLES")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-public class UserRoles {
+public class StaffRoles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column
+	@Enumerated(EnumType.ORDINAL)
+	private Roles roles;
 
 	public enum Roles {
 		USER(100), ADMIN(200);
@@ -33,8 +36,4 @@ public class UserRoles {
 			return values;
 		}
 	}
-
-	@Column
-	@Enumerated(EnumType.ORDINAL)
-	private Roles roles;
 }
