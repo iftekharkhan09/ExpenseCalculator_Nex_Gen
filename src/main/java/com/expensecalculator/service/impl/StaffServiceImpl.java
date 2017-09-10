@@ -1,9 +1,13 @@
 package com.expensecalculator.service.impl;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.expensecalculator.dao.GenderDao;
+import com.expensecalculator.dao.NameDao;
 import com.expensecalculator.dao.StaffDao;
 import com.expensecalculator.dao.TitleDao;
 import com.expensecalculator.dao.impl.NameDaoImpl;
@@ -23,6 +27,9 @@ import com.expensecalculator.utils.ObjectComparator;
 @Service
 public class StaffServiceImpl implements StaffService {
 	private final int NOOFALLOWEDUNSUCCESSFULATTEMPTS = 3;
+	
+	@Autowired
+	private NameDao nameDao;
 
 	@Autowired
 	private StaffDao staffDao;
@@ -37,67 +44,50 @@ public class StaffServiceImpl implements StaffService {
 	private Name name;
 
 	@Autowired
-	private Organization organization;
-
-	@Autowired
 	private ObjectComparator objectComparator;
 
 	@Autowired
 	private TitleDao titleDao;
 
 	public Staff authenticateStaff(LoginBean loginBean) {
-		staff = staffDao.findUnique(loginBean.getUserName());
-		if (null != staff) {
-			if (staff.getIsBlocked() == 'N' && staff != null && staff.getUserName().equals(loginBean.getUserName())
-					&& staff.getPassword().equals(loginBean.getPassword())) {
-				staff.setLastLogin(new Date());
-				new StaffDaoImpl().update(staff);
-				return staff;
-			} else if (staff.getIsBlocked() == 'N' && staff != null
-					&& staff.getUserName().equals(loginBean.getUserName())) {
-				updateUnsuccessfulAttemptsAndBlockedStatus(staff);
-			}
-		}
+		// staff = staffDao.findUnique(loginBean.getUserName());
+		// if (null != staff) {
+		// if (staff.getIsBlocked() == 'N' && staff != null &&
+		// staff.getUserName().equals(loginBean.getUserName())
+		// && staff.getPassword().equals(loginBean.getPassword())) {
+		// staff.setLastLogin(new Date());
+		// new StaffDaoImpl().update(staff);
+		// return staff;
+		// } else if (staff.getIsBlocked() == 'N' && staff != null
+		// && staff.getUserName().equals(loginBean.getUserName())) {
+		// updateUnsuccessfulAttemptsAndBlockedStatus(staff);
+		// }
+		// }
+		// return null;
 		return null;
 	}
 
 	public boolean createStaff(StaffRegistrationBean staffRegistrationBean) {
-		Title title=titleDao.findByTitle(staffRegistrationBean.getTitle());
-		staff.setTitle(title);
-		Name inputName = new Name(staffRegistrationBean.getFirstName(), staffRegistrationBean.getLastName());
-		boolean isNameAlreadydefined;
-		isNameAlreadydefined = objectComparator.isNameAlreadyDefined(inputName);
-		if (isNameAlreadydefined) {
-			// do Nothing..
-		} else
-			new NameDaoImpl().create(inputName);
-		Gender gender=genderDao.findByGender(staffRegistrationBean.getGender());
-		staff.setGender(gender);
-		name = new NameDaoImpl().findByName(inputName.getFirstName(), inputName.getLastName());
-		staff.setGender(gender);
-		staff.setEmail(staffRegistrationBean.getEmail());
-		staff.setName(name);
-		staff.setIpAddress(new MachineDetails().getIPAddress());
-		staff.setIsAdmin('Y');
-		staff.setIsBlocked('N');
-		staff.setLastLogin(null);
-		staff.setLeavingDate(null);
-		staff.setPassword(staffRegistrationBean.getPassword());
-		staff.setStartDate(new Date());
-		staff.setUserName(staffRegistrationBean.getUserName());
-		Organization inputOrganization = new Organization(staffRegistrationBean.getOrganization());
-		boolean isOrganizationAlreadyDefined;
-		isOrganizationAlreadyDefined = objectComparator.isOrganizationAlreadyDefined(inputOrganization);
-		if (isOrganizationAlreadyDefined) {
-			// do Nothing..
-		} else {
-			new OrganizationDaoImpl().create(inputOrganization);
+		String firstName=staffRegistrationBean.getFirstName();
+		String lastName=staffRegistrationBean.getLastName();
+		String email=staffRegistrationBean.getEmail();
+		Staff staff = new StaffDaoImpl().findByEmail(email);
+		if (null != staff) {
+			return false;
 		}
-		organization = new OrganizationDaoImpl().findByName(inputOrganization.getOrganizationName());
-		staff.setOrganization(organization);
-		staff.setMobileNo(staffRegistrationBean.getPhoneNo());
-		new StaffDaoImpl().create(staff);
-		return true;
+		Name name=nameDao.findByName(firstName,lastName);
+		if(null!=name) {
+			//do nothing..
+		}
+		else
+			new NameDaoImpl().create(new Name(firstName,lastName));
+		Name displayName=new NameDaoImpl().findByName(firstName,lastName);
+		Staff createdStaff=new Staff();
+		createdStaff.setName(displayName);
+		createdStaff.setEmail(staffRegistrationBean.getEmail());
+		createdStaff.setPassword(staffRegistrationBean.getPassword());
+		new StaffDaoImpl().addStaff(createdStaff);
+			return true;
 	}
 
 	public void updateUnsuccessfulAttemptsAndBlockedStatus(Staff staff) {

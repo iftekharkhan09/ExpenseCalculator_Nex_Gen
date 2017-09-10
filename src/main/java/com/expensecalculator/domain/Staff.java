@@ -1,7 +1,6 @@
 package com.expensecalculator.domain;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
@@ -17,7 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
@@ -26,21 +24,19 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "STAFF")
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-@NamedQueries({ @NamedQuery(name = "Staff.findByUserName", query = "select s from Staff s where s.userName=:username"),
-		@NamedQuery(name = "Staff.findByUsernameAndPass", query = "select s from Staff s where s.userName=:username and s.password=:password") })
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@NamedQueries({
+		@NamedQuery(name = "Staff.findByEmailAndPassword()", query = "select s from Staff s where s.email=:email and s.password=:password"),
+		@NamedQuery(name = "Staff.findByEmail()", query = "select s from Staff s where s.email =:emailId") })
 public class Staff {
 	@ManyToMany
-	@JoinTable(name="STAFF_ORGANIZATION",joinColumns=@JoinColumn(name="staff_id"),inverseJoinColumns=@JoinColumn(name="organization_id"))
+	@JoinTable(name = "STAFF_ORGANIZATION", joinColumns = @JoinColumn(name = "staff_id"), inverseJoinColumns = @JoinColumn(name = "organization_id"))
 	private Set<Organization> organizations;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "ip_address")
 	private String ipAddress;
-	@NotNull
-	@Column(name = "username")
-	private String userName;
 	@Column(name = "password")
 	private String password;
 	@Column(name = "start_date")
@@ -51,7 +47,7 @@ public class Staff {
 	private char isBlocked;
 	@Column(name = "unsuccessful_login_attempts", columnDefinition = "integer default '0'")
 	private int unsuccessfullLoginAttempts;
-	@OneToOne(cascade=CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "name_id")
 	private Name name;
 	@Column(name = "is_admin", columnDefinition = "char(1) default 'N'")
@@ -66,7 +62,7 @@ public class Staff {
 	@Column(name = "mobile_no")
 	private String mobileNo;
 	@OneToOne
-	@JoinColumn(name="title_id")
+	@JoinColumn(name = "title_id")
 	private Title title;
 
 	public String getPassword() {
@@ -107,14 +103,6 @@ public class Staff {
 
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public Date getStartDate() {
